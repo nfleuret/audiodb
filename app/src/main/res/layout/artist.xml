@@ -116,15 +116,88 @@
         app:layout_constraintTop_toTopOf="@+id/guideline_h_45"
         app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
         app:layout_constraintRight_toRightOf="@+id/guideline_v_95"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="60"
         android:textStyle="bold"
         android:textSize="10sp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/grey"
         android:text="Khalid is an American singerand songwriter. He is signed to Right Hand Music Group and RCA Records. His debut single, 'Location', was released in july 2016..."
         />
+
+    <TextView
+        android:id="@+id/artist_album_title"
+        app:layout_constraintTop_toBottomOf="@+id/artist_description"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="60"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:text="Albums(12)"
+        />
+
+    <View
+        android:id="@+id/artist_separator_1"
+        app:layout_constraintTop_toBottomOf="@+id/artist_album_title"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
+        app:layout_constraintRight_toLeftOf="@+id/guideline_v_95"
+        android:layout_marginTop="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@color/grey"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:layout_constraintTop_toBottomOf="@+id/artist_separator_1"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
+        app:layout_constraintRight_toLefttOf="@+id/guideline_v_95"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/album_list"
+        android:background="@color/white"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/artist_song_most_appreciate"
+        app:layout_constraintTop_toBottomOf="@+id/album_list"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="60"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:text="Titres les plus appréciés"
+        />
+
+    <View
+        android:id="@+id/artist_separator_2"
+        app:layout_constraintTop_toBottomOf="@+id/artist_song_most_appreciate"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
+        android:layout_marginTop="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@color/grey"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        app:layout_constraintTop_toBottomOf="@+id/artist_separator_2"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_list"
+        android:background="@color/white"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 

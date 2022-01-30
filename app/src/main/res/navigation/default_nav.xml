@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/default_nav.xml"
+    app:startDestination="@+id/albums_fragment">
+    <fragment
+        android:id="@+id/albums_fragment"
+        android:name="esgi.audiodb.AlbumsFragment"
+        android:label="AlbumsFragment" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/songs_fragment"
+        android:name="esgi.audiodb.SongFragment"
+        android:label="Song_fragment" >
+
+    </fragment>
+
+</navigation>
