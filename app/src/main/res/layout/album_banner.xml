@@ -9,7 +9,7 @@
     app:cardUseCompatPadding="true"
     android:layout_marginBottom="5dp"
     android:layout_marginTop="5dp"
-    app:cardBackgroundColor="@color/grey"
+    app:cardBackgroundColor="@color/alabaster"
     >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

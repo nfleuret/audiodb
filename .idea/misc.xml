@@ -13,7 +13,7 @@
         <entry key="app/src/main/res/drawable/ic_right_arrow_background.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21388888888888888" />
         <entry key="app/src/main/res/layout/album_banner.xml" value="0.5549511933433398" />
-        <entry key="app/src/main/res/layout/artist.xml" value="0.7382546429189061" />
+        <entry key="app/src/main/res/layout/artist.xml" value="0.25" />
         <entry key="app/src/main/res/layout/remy_activity_main.xml" value="0.15208333333333332" />
         <entry key="app/src/main/res/layout/title_banner.xml" value="0.8904370927472046" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.16822916666666668" />
@@ -22,7 +22,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
