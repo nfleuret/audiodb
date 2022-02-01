@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -86,13 +87,11 @@
         />
 
     <androidx.cardview.widget.CardView
-        xmlns:card_view="http://schemas.android.com/tools"
         app:layout_constraintTop_toBottomOf="@+id/image_album"
         app:layout_constraintRight_toRightOf="@+id/guideline_v_95"
         app:layout_constraintLeft_toLeftOf="@+id/guideline_v_8"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         app:cardUseCompatPadding="true"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
@@ -168,29 +167,91 @@
                 app:layout_constraintTop_toTopOf="parent"
                 />
 
-            <ImageView
-                android:id="@+id/album_star"
+            <androidx.cardview.widget.CardView
                 app:layout_constraintLeft_toRightOf="@+id/guideline_v_5"
-                app:layout_constraintRight_toLeftOf="@+id/guideline_v_15"
+                app:layout_constraintRight_toLeftOf="@+id/guideline_v_20"
                 app:layout_constraintTop_toTopOf="@+id/guideline_h_5"
                 app:layout_constraintBottom_toBottomOf="@+id/guideline_h_90"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/ic_star_foreground"
-                />
+                android:orientation="vertical"
+                app:cardUseCompatPadding="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                app:cardBackgroundColor="@color/white"
+                android:id="@+id/star_card"
+                >
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintLeft_toRightOf="parent"
+                    app:layout_constraintRight_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    >
 
-            <TextView
-                android:id="@+id/album_mark"
-                app:layout_constraintTop_toBottomOf="@+id/guideline_h_5"
-                app:layout_constraintBottom_toTopOf="@+id/guideline_h_90"
-                app:layout_constraintLeft_toRightOf="@+id/album_star"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="60"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:text="4.9"
-                />
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_h_star_20"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_h_star_80"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.8"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_v_star_20"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_v_star_60"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/album_star"
+                    app:layout_constraintLeft_toRightOf="@+id/guideline_v_star_20"
+                    app:layout_constraintRight_toLeftOf="@+id/guideline_v_star_60"
+                    app:layout_constraintTop_toBottomOf="@+id/guideline_h_star_20"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline_h_star_80"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/ic_star_foreground"
+                    />
+
+                <TextView
+                    android:id="@+id/album_mark"
+                    app:layout_constraintTop_toBottomOf="@+id/guideline_h_star_20"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline_h_star_80"
+                    app:layout_constraintLeft_toRightOf="@+id/album_star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="60"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:text="4.9"
+                    />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
 
             <TextView
                 android:id="@+id/album_number_vote"
