@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/drawable/ic_right_arrow.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/drawable/ic_right_arrow_background.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21388888888888888" />
+        <entry key="app/src/main/res/layout/album.xml" value="0.5046767661049996" />
         <entry key="app/src/main/res/layout/album_banner.xml" value="0.5549511933433398" />
         <entry key="app/src/main/res/layout/artist.xml" value="0.25" />
         <entry key="app/src/main/res/layout/remy_activity_main.xml" value="0.15208333333333332" />

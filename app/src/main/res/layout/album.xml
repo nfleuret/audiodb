@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_h_30"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.30"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_v_8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_v_95"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/image_album"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline_h_30"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/eminem"
+        />
+
+    <ImageView
+        android:id="@+id/previous_arrow"
+        app:layout_constraintTop_toTopOf="@+id/guideline_10"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_v_8"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_arrow"
+        />
+
+    <ImageView
+        android:id="@+id/ic_grey"
+        app:layout_constraintTop_toTopOf="@+id/guideline_10"
+        app:layout_constraintRight_toRightOf="@+id/guideline_v_95"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/grey_circle"
+        />
+
+    <ImageView
+        android:id="@+id/ic_fav"
+        app:layout_constraintTop_toTopOf="@+id/guideline_10"
+        app:layout_constraintRight_toRightOf="@+id/guideline_v_95"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_like_on"
+        />
+
+    <androidx.cardview.widget.CardView
+        xmlns:card_view="http://schemas.android.com/tools"
+        app:layout_constraintTop_toBottomOf="@+id/image_album"
+        app:layout_constraintRight_toRightOf="@+id/guideline_v_95"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_v_8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:cardUseCompatPadding="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        app:cardBackgroundColor="@color/alabaster"
+        android:id="@+id/fav_card"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            >
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_v_5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_v_15"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.15"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_v_20"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.20"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_v_85"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.85"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_v_90"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.90"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_h_5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.1"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_h_90"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.90"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/album_star"
+                app:layout_constraintLeft_toRightOf="@+id/guideline_v_5"
+                app:layout_constraintRight_toLeftOf="@+id/guideline_v_15"
+                app:layout_constraintTop_toTopOf="@+id/guideline_h_5"
+                app:layout_constraintBottom_toBottomOf="@+id/guideline_h_90"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_star_foreground"
+                />
+
+            <TextView
+                android:id="@+id/album_mark"
+                app:layout_constraintTop_toBottomOf="@+id/guideline_h_5"
+                app:layout_constraintBottom_toTopOf="@+id/guideline_h_90"
+                app:layout_constraintLeft_toRightOf="@+id/album_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="60"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:text="4.9"
+                />
+
+            <TextView
+                android:id="@+id/album_number_vote"
+                app:layout_constraintTop_toBottomOf="@+id/guideline_h_5"
+                app:layout_constraintBottom_toTopOf="@+id/guideline_h_90"
+                app:layout_constraintLeft_toRightOf="@+id/guideline_v_20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="60"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:text="348 votes"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/album_description"
+        app:layout_constraintTop_toBottomOf="@+id/fav_card"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="60"
+        android:textSize="14sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:text="lorem ipseum dsqd sqd d qsd qsd  dqs d qsd  d sqdsqdsqdsq dqsdsqdqsdsqd sqdsqdsqdsq qsdqsdsqdsqd qsdsqdsqdqsd sqdsqdsqdsqds qsdsqdsq sdsqdqsdqsd dqsdsqdsqds qsdqsdsqdsqdsq"
+        />
+
+
+    <TextView
+        android:id="@+id/artist_song_most_appreciate"
+        app:layout_constraintTop_toBottomOf="@+id/album_description"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="60"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:text="Titres les plus appréciés"
+        />
+
+    <View
+        android:id="@+id/artist_separator_2"
+        app:layout_constraintTop_toBottomOf="@+id/artist_song_most_appreciate"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
+        android:layout_marginTop="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@color/grey"/>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        app:layout_constraintTop_toBottomOf="@+id/artist_separator_2"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/title_list"
+        android:background="@color/white"
+        >
+    </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
