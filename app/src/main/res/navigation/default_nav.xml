@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/default_nav"
-    app:startDestination="@+id/album_fragment">
+    app:startDestination="@+id/song_fragment">
     <fragment
         android:id="@+id/artist_fragment"
         android:name="esgi.audiodb.ArtistsFragment"
@@ -13,6 +13,12 @@
         android:id="@+id/album_fragment"
         android:name="esgi.audiodb.AlbumFragment"
         android:label="album_fragment" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/song_fragment"
+        android:name="esgi.audiodb.SongFragment"
+        android:label="song_fragment" >
     </fragment>
 
 </navigation>
