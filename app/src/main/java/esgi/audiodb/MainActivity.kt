@@ -13,8 +13,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.remy_activity_main)
         supportActionBar?.hide()
-
-        Log.w("on passe ici", "encore ouais");
     }
 }
 
