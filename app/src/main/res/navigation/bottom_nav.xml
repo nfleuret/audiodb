@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_bottom"
+    app:startDestination="@id/rankingFragment">
+
+    <fragment
+        android:id="@+id/rankingFragment"
+        android:name="esgi.audiodb.RankingFragment"
+        android:label="RankingFragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="esgi.audiodb.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="esgi.audiodb.FavoriteFragment"
+        android:label="FavoriteFragment" />
+</navigation>

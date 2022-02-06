@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/rankingFragment"
+        android:title="@string/ranking"
+        android:icon="@drawable/ic_accueil_classements" />
+
+    <item android:id="@+id/searchFragment"
+        android:title="@string/search"
+        android:icon="@drawable/ic_accueil_recherche" />
+
+    <item android:id="@+id/favoriteFragment"
+        android:title="@string/favorite"
+        android:icon="@drawable/ic_accueil_fav" />
+</menu>
