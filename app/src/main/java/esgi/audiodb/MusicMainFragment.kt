@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.music_main.*
 
 class MusicMainFragment : Fragment() {
