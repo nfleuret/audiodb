@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">AudioDB</string>
+    <string name="app_name" translatable="false">AudioDB</string>
+    <string name="titles">Titles</string>
+    <string name="Albums">Albums</string>
+    <string name="search">Search</string>
+    <string name="ranking">Rankings</string>
+    <string name="favorite">Favorites</string>
 </resources>

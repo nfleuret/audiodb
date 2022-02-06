@@ -1,0 +1,7 @@
+<resources>
+    <string name="titles">Titres</string>
+    <string name="Albums">Albums</string>
+    <string name="search">Rechercher</string>
+    <string name="ranking">Classements</string>
+    <string name="favorite">Favoris</string>
+</resources>
