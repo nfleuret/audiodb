@@ -15,7 +15,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21388888888888888" />
         <entry key="app/src/main/res/layout/album.xml" value="0.38284518828451886" />
         <entry key="app/src/main/res/layout/album_banner.xml" value="0.5549511933433398" />
-        <entry key="app/src/main/res/layout/artist.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/artist.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/artist_description.xml" value="0.27309782608695654" />
         <entry key="app/src/main/res/layout/remy_activity_main.xml" value="0.15208333333333332" />
         <entry key="app/src/main/res/layout/song.xml" value="0.165" />
         <entry key="app/src/main/res/layout/title_banner.xml" value="0.8904370927472046" />

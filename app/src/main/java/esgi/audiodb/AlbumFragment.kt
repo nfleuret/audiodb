@@ -45,7 +45,7 @@ class AlbumFragment: Fragment() {
         )
 
 
-        title_list.run {
+        /*title_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)
             adapter = ListAdapterSong(songs, context);
             addItemDecoration(
@@ -54,6 +54,6 @@ class AlbumFragment: Fragment() {
                     0
                 )
             )
-        }
+        }*/
     }
 }

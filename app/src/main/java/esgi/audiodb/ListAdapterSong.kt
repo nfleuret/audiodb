@@ -6,42 +6,79 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import esgi.audiodb.album.Album
 import esgi.audiodb.song.Song
 
-class ListAdapterSong(val songs: List<Song>, val context: Context) : RecyclerView.Adapter<ListAdapterSong.ListItemCell>() {
+class ListAdapterSong(val songs: List<Song>, val albums: List<Album>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemCell {
-
-        return ListItemCell(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.title_banner, parent, false)
-        )
+    companion object {
+        const val ITEM_SONG = 0
+        const val ITEM_ALBUM = 1
     }
 
-    override fun onBindViewHolder(cell: ListItemCell, position: Int) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-
-        var position = cell.adapterPosition
-
-
-        cell.itemView.findViewById<TextView>(R.id.title_name)
-            .setTextBold(
-                songs[position].name
+        if (viewType == ITEM_SONG) {
+            return TitleViewHolder(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.title_banner, null, false)
             )
-
-        cell.itemView.findViewById<TextView>(R.id.title_number)
-            .setTextBold(
-                String.format("%d", position + 1)
+        } else {
+            return CellViewHolder(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.album_banner, null, false)
             )
+        }
+    }
+
+    override fun onBindViewHolder(cell: RecyclerView.ViewHolder, position: Int) {
+
+        if (cell is TitleViewHolder) {
+
+            var position = cell.adapterPosition
+
+
+            cell.itemView.findViewById<TextView>(R.id.title_name)
+                .setTextBold(
+                    songs[position - albums.size].name
+                )
+
+            cell.itemView.findViewById<TextView>(R.id.title_number)
+                .setTextBold(
+                    String.format("%d", position + 1)
+                )
+
+        } else if (cell is CellViewHolder) {
+
+            var position = cell.adapterPosition
+
+            cell.itemView.findViewById<TextView>(R.id.album_name)
+                .setTextBold(
+                    albums[position].name
+                )
+            cell.itemView.findViewById<TextView>(R.id.album_year)
+                .setTextBold(
+                    albums[position].year.toString()
+                )
+        }
+
 
     }
 
     override fun getItemCount(): Int {
-        return 9;
+        return songs.size + albums.size;
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        if (position < albums.size) {
+            return ITEM_ALBUM
+        } else {
+            return ITEM_SONG
+        }
     }
 
 
-    class ListItemCell(v: View) : RecyclerView.ViewHolder(v) {
-
-    }
 }
+
+class TitleViewHolder(v: View) : RecyclerView.ViewHolder(v)
+class CellViewHolder(v: View) : RecyclerView.ViewHolder(v)

@@ -39,6 +39,21 @@ class ArtistsFragment: Fragment() {
         val albums: List<Album> = listOf(
             Album("After Hours", 2020),
             Album("Star Boy", 2016),
+            Album("Beauty behind the Madness", 2015),
+            Album("After Hours", 2020),
+            Album("Star Boy", 2016),
+            Album("Beauty behind the Madness", 2015),
+            Album("After Hours", 2020),
+            Album("Star Boy", 2016),
+            Album("Beauty behind the Madness", 2015),
+            Album("After Hours", 2020),
+            Album("Star Boy", 2016),
+            Album("Beauty behind the Madness", 2015),
+            Album("After Hours", 2020),
+            Album("Star Boy", 2016),
+            Album("Beauty behind the Madness", 2015),
+            Album("After Hours", 2020),
+            Album("Star Boy", 2016),
             Album("Beauty behind the Madness", 2015)
         )
         val songs: List<Song> = listOf(
@@ -55,10 +70,7 @@ class ArtistsFragment: Fragment() {
 
         album_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)
-            adapter = ListAdapter(albums, context,  object: OnItemClickedListener {
-                override fun onItemClicked(album: Album) {
-                }
-            });
+            adapter = ListAdapterSong(songs, albums);
             addItemDecoration(
                 DividerItemDecoration(
                     requireContext(),
@@ -67,16 +79,16 @@ class ArtistsFragment: Fragment() {
             )
         }
 
-        title_list.run {
+        /*title_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)
-            adapter = ListAdapterSong(songs, context);
+            adapter = ListAdapterSong(songs);
             addItemDecoration(
                 DividerItemDecoration(
                     requireContext(),
                     0
                 )
             )
-        }
+        }*/
     }
 
 
