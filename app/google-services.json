@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "725004280418",
+    "firebase_url": "https://esgi-project-684a0-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "esgi-project-684a0",
+    "storage_bucket": "esgi-project-684a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:725004280418:android:ed9d9ea020dc3b3358a73b",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "725004280418-f7uesroslgb1ugq6f7dacelloccbi4m8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATjUxLgNaThmsWW8AO6GIanunl74yFKV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "725004280418-f7uesroslgb1ugq6f7dacelloccbi4m8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

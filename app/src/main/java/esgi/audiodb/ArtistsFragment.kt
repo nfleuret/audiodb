@@ -12,9 +12,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import esgi.audiodb.album.Album
+import esgi.audiodb.album.NetworkManager
 import esgi.audiodb.song.Song
 import kotlinx.android.synthetic.main.artist.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class ArtistsFragment: Fragment() {
@@ -52,6 +58,19 @@ class ArtistsFragment: Fragment() {
             Song("Star Boy"),
             Song("Beauty behind the Madness")
         )
+
+        GlobalScope.launch(Dispatchers.Default) {
+            val response = NetworkManager.getArtistInfo("khaled").await()
+
+
+
+            withContext(Dispatchers.Main) {
+                name_artist.text = response.artists[0].strArtist;
+                artist_localization.text = response.artists[0].strCountry;
+                Picasso.get().load(response.artists[0].strArtistThumb).into(image_artist);
+                Log.w("pomme", response.artists[0].strArtistThumb);
+            }
+        }
 
         album_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)

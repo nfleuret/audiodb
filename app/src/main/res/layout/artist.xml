@@ -95,7 +95,6 @@
         android:textStyle="bold"
         android:textSize="35sp"
         android:textColor="@color/white"
-        android:text="Khalid"
         />
     <TextView
         android:id="@+id/artist_localization"
@@ -108,7 +107,6 @@
         android:textSize="10sp"
         android:layout_marginBottom="10dp"
         android:textColor="@color/grey"
-        android:text="Toronto Canada"
         />
 
     <ScrollView

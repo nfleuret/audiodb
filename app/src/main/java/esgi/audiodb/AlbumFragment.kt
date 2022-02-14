@@ -12,8 +12,12 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import esgi.audiodb.album.Album
+import esgi.audiodb.album.NetworkManager
 import esgi.audiodb.song.Song
 import kotlinx.android.synthetic.main.artist.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class AlbumFragment: Fragment() {
     override fun onCreateView(
