@@ -12,13 +12,24 @@ import esgi.audiodb.song.Song
 class ListAdapterSong(val songs: List<Song>, val albums: List<Album>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
-        const val ITEM_SONG = 0
+        const val ITEM_DESCRIPTION = 0
         const val ITEM_ALBUM = 1
+        const val ITEM_TITLE_SONG = 2
+        const val ITEM_SONG = 3
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
-        if (viewType == ITEM_SONG) {
+        if(viewType == ITEM_TITLE_SONG) {
+            return TitleSongViewHolder(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.song_title, null, false)
+            )
+        } else if(viewType == ITEM_DESCRIPTION) {
+            return DescriptionViewHolder(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.artist_description, null, false)
+            )
+        }else if (viewType == ITEM_SONG) {
             return TitleViewHolder(
                 LayoutInflater.from(parent.context)
                     .inflate(R.layout.title_banner, null, false)
@@ -40,12 +51,12 @@ class ListAdapterSong(val songs: List<Song>, val albums: List<Album>) : Recycler
 
             cell.itemView.findViewById<TextView>(R.id.title_name)
                 .setTextBold(
-                    songs[position - albums.size].name
+                    songs[position - (albums.size + 2)].name
                 )
 
             cell.itemView.findViewById<TextView>(R.id.title_number)
                 .setTextBold(
-                    String.format("%d", position + 1)
+                    String.format("%d", position - (albums.size + 2))
                 )
 
         } else if (cell is CellViewHolder) {
@@ -54,11 +65,11 @@ class ListAdapterSong(val songs: List<Song>, val albums: List<Album>) : Recycler
 
             cell.itemView.findViewById<TextView>(R.id.album_name)
                 .setTextBold(
-                    albums[position].name
+                    albums[position - 1].name
                 )
             cell.itemView.findViewById<TextView>(R.id.album_year)
                 .setTextBold(
-                    albums[position].year.toString()
+                    albums[position - 1].year.toString()
                 )
         }
 
@@ -66,12 +77,17 @@ class ListAdapterSong(val songs: List<Song>, val albums: List<Album>) : Recycler
     }
 
     override fun getItemCount(): Int {
-        return songs.size + albums.size;
+        return songs.size + albums.size + 1;
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (position < albums.size) {
+
+        if (position == 0) {
+            return ITEM_DESCRIPTION
+        } else if (position < albums.size + 1) {
             return ITEM_ALBUM
+        } else if(position == albums.size + 1) {
+            return ITEM_TITLE_SONG
         } else {
             return ITEM_SONG
         }
@@ -79,6 +95,7 @@ class ListAdapterSong(val songs: List<Song>, val albums: List<Album>) : Recycler
 
 
 }
-
+class TitleSongViewHolder(v: View) : RecyclerView.ViewHolder(v)
+class DescriptionViewHolder(v: View) : RecyclerView.ViewHolder(v)
 class TitleViewHolder(v: View) : RecyclerView.ViewHolder(v)
 class CellViewHolder(v: View) : RecyclerView.ViewHolder(v)

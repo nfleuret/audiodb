@@ -39,21 +39,6 @@ class ArtistsFragment: Fragment() {
         val albums: List<Album> = listOf(
             Album("After Hours", 2020),
             Album("Star Boy", 2016),
-            Album("Beauty behind the Madness", 2015),
-            Album("After Hours", 2020),
-            Album("Star Boy", 2016),
-            Album("Beauty behind the Madness", 2015),
-            Album("After Hours", 2020),
-            Album("Star Boy", 2016),
-            Album("Beauty behind the Madness", 2015),
-            Album("After Hours", 2020),
-            Album("Star Boy", 2016),
-            Album("Beauty behind the Madness", 2015),
-            Album("After Hours", 2020),
-            Album("Star Boy", 2016),
-            Album("Beauty behind the Madness", 2015),
-            Album("After Hours", 2020),
-            Album("Star Boy", 2016),
             Album("Beauty behind the Madness", 2015)
         )
         val songs: List<Song> = listOf(
