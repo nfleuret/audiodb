@@ -6,8 +6,8 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 class Album
 constructor(
-    val name: String,
-    val year: Int,
+    val strAlbum: String,
+    val intYearReleased: Int,
 ): Parcelable {
 
 }

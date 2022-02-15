@@ -29,7 +29,7 @@ class ListAdapterSong(val songs: List<Song>) : RecyclerView.Adapter<RecyclerView
 
         holder.itemView.findViewById<TextView>(R.id.title_name)
             .setTextBold(
-                songs[position].name
+                songs[position].strTrack
             )
 
         holder.itemView.findViewById<TextView>(R.id.title_number)

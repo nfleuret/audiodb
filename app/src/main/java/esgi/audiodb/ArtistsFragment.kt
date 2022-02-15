@@ -11,9 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import esgi.audiodb.album.Album
+import esgi.audiodb.album.Artist
+import esgi.audiodb.album.NetworkManager
 import esgi.audiodb.song.Song
 import kotlinx.android.synthetic.main.artist.*
+import kotlinx.coroutines.*
 
 
 class ArtistsFragment: Fragment() {
@@ -35,7 +39,28 @@ class ArtistsFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         Log.w("ceci est un message", "encore un");
-        val albums: List<Album> = listOf(
+        var albums: List<Album> = listOf()
+        var songs: List<Song> = listOf()
+        var artist: Artist? = null;
+
+        GlobalScope.launch(Dispatchers.Default) {
+            val artists = NetworkManager.getArtistInfo("eminem").await();
+            val mostPopularTitles = NetworkManager.getMostPopularTracks("eminem").await();
+            val albumsFromApi = NetworkManager.getAlbums("eminem").await();
+
+            withContext(Dispatchers.Main) {
+                name_artist.text = artists.artists[0].strArtist;
+                artist_localization.text = artists.artists[0].strCountry;
+                Picasso.get().load(artists.artists[0].strArtistThumb).into(image_artist);
+                artist = artists.artists[0];
+                albums = albumsFromApi.albums;
+                songs = mostPopularTitles.tracks;
+
+                album_list.adapter = ListAdapterArtist(artist, songs, albums);
+            }
+        }
+
+        /*val albums: List<Album> = listOf(
             Album("After Hours", 2020),
             Album("Star Boy", 2016),
             Album("Beauty behind the Madness", 2015)
@@ -50,11 +75,11 @@ class ArtistsFragment: Fragment() {
             Song("Walk on Water feat.Beyoncé"),
             Song("Star Boy"),
             Song("Beauty behind the Madness")
-        )
+        )*/
 
         album_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)
-            adapter = ListAdapterArtist(songs, albums);
+            adapter = ListAdapterArtist(artist, songs, albums);
             addItemDecoration(
                 DividerItemDecoration(
                     requireContext(),
@@ -63,42 +88,4 @@ class ArtistsFragment: Fragment() {
             )
         }
     }
-
-
-    class ListAdapter(val albums: List<Album>, val context: Context, val listener: OnItemClickedListener) : RecyclerView.Adapter<ListItemCell>() {
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemCell {
-            return ListItemCell(
-                LayoutInflater.from(parent.context)
-                    .inflate(R.layout.album_banner, parent, false)
-            )
-        }
-
-        override fun onBindViewHolder(cell: ListItemCell, position: Int) {
-
-            var position = cell.adapterPosition
-
-            cell.itemView.findViewById<TextView>(R.id.album_name)
-                .setTextBold(
-                    albums[position].name
-                )
-            cell.itemView.findViewById<TextView>(R.id.album_year)
-                .setTextBold(
-                    albums[position].year.toString()
-                )
-        }
-
-        override fun getItemCount(): Int {
-            return albums.size;
-        }
-
-    }
-
-    class ListItemCell(v: View) : RecyclerView.ViewHolder(v) {
-
-    }
-}
-
-interface OnItemClickedListener {
-    fun onItemClicked(album: Album)
 }

@@ -45,6 +45,8 @@
         android:textSize="10sp"
         android:layout_marginTop="10dp"
         android:textColor="@color/grey"
+        android:maxLines="4"
+        android:ellipsize = "end"
         android:text="Khalid is an American singerand songwriter. He is signed to Right Hand Music Group and RCA Records. His debut single, 'Location', was released in july 2016..."
         />
 
