@@ -39,7 +39,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.08"
+        app:layout_constraintGuide_percent="0.05"
         app:layout_constraintTop_toTopOf="parent"
         />
 
@@ -386,7 +386,7 @@
         android:textSize="25sp"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
-        android:text="Titres les plus appréciés"
+        android:text="Titres"
         />
 
     <View

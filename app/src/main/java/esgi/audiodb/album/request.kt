@@ -6,6 +6,7 @@ import esgi.audiodb.song.Song
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import retrofit2.http.Query
 
 data class ResponseArtist(@SerializedName("artists") val artists: List<Artist>)
@@ -21,6 +22,10 @@ interface API {
 
     @retrofit2.http.GET("track-top10.php")
     fun getMostPopularTracks(@Query("s") artistName: String): Deferred<ResponseTrack>
+
+    @retrofit2.http.GET("track.php")
+    fun getMostPopularTracks(@Query("m") artistId: Int): Deferred<ResponseTrack>
+
 }
 
 object NetworkManager {
@@ -38,10 +43,27 @@ object NetworkManager {
         return getRetrofitFromUrl("https://theaudiodb.com/api/v1/json/523532/").getMostPopularTracks(artistName)
     }
 
+    suspend fun getTracksByAlbum(artistId: Int): Deferred<ResponseTrack> {
+        return getRetrofitFromUrl("https://theaudiodb.com/api/v1/json/523532/").getMostPopularTracks(artistId)
+    }
+
+    suspend fun getLyrics(artistName: String, songName: String): Deferred<ResponseTrack> {
+        return getRetrofitFromUrl("https://theaudiodb.com/api/v1/json/523532/").getMostPopularTracks(artistId)
+    }
+
     fun getRetrofitFromUrl(url: String):  API{
         return Retrofit.Builder()
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .build()
+            .create(API::class.java)
+    }
+
+    fun getRetrofitFromUrlXML(url: String):  API{
+        return Retrofit.Builder()
+            .baseUrl(url)
+            .addConverterFactory(SimpleXmlConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
             .create(API::class.java)

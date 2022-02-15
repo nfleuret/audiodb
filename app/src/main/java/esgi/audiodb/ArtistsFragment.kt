@@ -60,23 +60,6 @@ class ArtistsFragment: Fragment() {
             }
         }
 
-        /*val albums: List<Album> = listOf(
-            Album("After Hours", 2020),
-            Album("Star Boy", 2016),
-            Album("Beauty behind the Madness", 2015)
-        )
-        val songs: List<Song> = listOf(
-            Song("Walk on Water feat.Beyoncé"),
-            Song("Star Boy"),
-            Song("Beauty behind the Madness"),
-            Song("Walk on Water feat.Beyoncé"),
-            Song("Star Boy"),
-            Song("Beauty behind the Madness"),
-            Song("Walk on Water feat.Beyoncé"),
-            Song("Star Boy"),
-            Song("Beauty behind the Madness")
-        )*/
-
         album_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)
             adapter = ListAdapterArtist(artist, songs, albums);

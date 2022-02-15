@@ -11,10 +11,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import esgi.audiodb.album.Album
+import esgi.audiodb.album.NetworkManager
 import esgi.audiodb.song.Song
 import kotlinx.android.synthetic.main.album.*
 import kotlinx.android.synthetic.main.artist.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AlbumFragment: Fragment() {
     override fun onCreateView(
@@ -33,17 +39,24 @@ class AlbumFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
 
-        val songs: List<Song> = listOf(
-            Song("Walk on Water feat.Beyoncé"),
-            Song("Star Boy"),
-            Song("Beauty behind the Madness"),
-            Song("Walk on Water feat.Beyoncé"),
-            Song("Star Boy"),
-            Song("Beauty behind the Madness"),
-            Song("Walk on Water feat.Beyoncé"),
-            Song("Star Boy"),
-            Song("Beauty behind the Madness")
-        )
+        val album = Album("Revival",2017,"https://www.theaudiodb.com/images/media/album/thumb/twsyqy1513337658.jpg")
+
+        var songs: List<Song> = listOf();
+
+        GlobalScope.launch(Dispatchers.Default) {
+            val songsRequest = NetworkManager.getTracksByAlbum(2289652).await();
+
+            withContext(Dispatchers.Main) {
+                songs = songsRequest.tracks;
+                album_title.text = album.strAlbum
+                album_number_song.text = songs.size.toString() + "chansons";
+                Picasso.get().load(album.strAlbumThumb).into(image_album);
+                Picasso.get().load(album.strAlbumThumb).into(image_album_min);
+
+
+                title_list.adapter = ListAdapterSong(songs);
+            }
+        }
 
 
         title_list.run {

@@ -8,6 +8,7 @@ class Album
 constructor(
     val strAlbum: String,
     val intYearReleased: Int,
+    val strAlbumThumb: String
 ): Parcelable {
 
 }
