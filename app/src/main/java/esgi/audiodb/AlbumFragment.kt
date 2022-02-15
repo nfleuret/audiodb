@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import esgi.audiodb.album.Album
 import esgi.audiodb.song.Song
+import kotlinx.android.synthetic.main.album.*
 import kotlinx.android.synthetic.main.artist.*
 
 class AlbumFragment: Fragment() {
@@ -45,15 +46,15 @@ class AlbumFragment: Fragment() {
         )
 
 
-        /*title_list.run {
+        title_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)
-            adapter = ListAdapterSong(songs, context);
+            adapter = ListAdapterSong(songs);
             addItemDecoration(
                 DividerItemDecoration(
                     requireContext(),
                     0
                 )
             )
-        }*/
+        }
     }
 }

@@ -2,7 +2,6 @@ package esgi.audiodb
 
 import android.content.Context
 import android.os.Bundle
-import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -55,7 +54,7 @@ class ArtistsFragment: Fragment() {
 
         album_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)
-            adapter = ListAdapterSong(songs, albums);
+            adapter = ListAdapterArtist(songs, albums);
             addItemDecoration(
                 DividerItemDecoration(
                     requireContext(),
@@ -63,17 +62,6 @@ class ArtistsFragment: Fragment() {
                 )
             )
         }
-
-        /*title_list.run {
-            layoutManager = GridLayoutManager(requireContext(), 1)
-            adapter = ListAdapterSong(songs);
-            addItemDecoration(
-                DividerItemDecoration(
-                    requireContext(),
-                    0
-                )
-            )
-        }*/
     }
 
 
