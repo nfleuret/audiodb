@@ -49,7 +49,6 @@ interface DbDao {
 @Database(entities = [Artist::class, Album::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun artistDao(): DbDao
-    abstract fun albumDao(): DbDao
 }
 
 class DatabaseManager(context: Context) {
@@ -73,7 +72,7 @@ class DatabaseManager(context: Context) {
     }
 
     fun listAlbum() {
-        db.albumDao().listAlbums()
+        db.artistDao().listAlbums()
     }
 
     fun findArtistByName(artistName: String) {
@@ -81,7 +80,7 @@ class DatabaseManager(context: Context) {
     }
 
     fun findAlbumByName(albumName: String) {
-        db.albumDao().albumByName(albumName)
+        db.artistDao().albumByName(albumName)
     }
 
     suspend fun listenToArtistsChanges(): Flow<List<Artist>> {

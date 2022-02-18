@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import esgi.audiodb.album.Album
 import esgi.audiodb.album.NetworkManager
+import esgi.audiodb.dao.DatabaseManager
 import esgi.audiodb.song.Song
 import kotlinx.android.synthetic.main.album.*
 import kotlinx.android.synthetic.main.artist.*
@@ -48,7 +49,11 @@ class AlbumFragment: Fragment() {
         val artist = AlbumFragmentArgs.fromBundle(requireArguments()).artist
 
 
+
         GlobalScope.launch(Dispatchers.Default) {
+            val databaseManager = context?.let { DatabaseManager(it) }
+            println(databaseManager?.listAlbum())
+
             val songsRequest = NetworkManager.getTracksByAlbum(album.idAlbum.toInt()).await();
 
             withContext(Dispatchers.Main) {
