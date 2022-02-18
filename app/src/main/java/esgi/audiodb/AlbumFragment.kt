@@ -57,9 +57,11 @@ class AlbumFragment: Fragment() {
                 album_number_song.text = songs.size.toString() + " chansons";
                 Picasso.get().load(album.strAlbumThumb).into(image_album);
                 Picasso.get().load(album.strAlbumThumb).into(image_album_min);
+                album_mark.text = album.intScore;
+                album_number_vote.text = album.intScoreVotes + " votes";
 
 
-                title_list.adapter = ListAdapterSong(songs, artist);
+                    title_list.adapter = ListAdapterSong(songs, artist);
             }
         }
 

@@ -18,7 +18,7 @@ class ListAdapterLyric(val lyric: List<String>?) : RecyclerView.Adapter<Recycler
     }
 
     override fun getItemCount(): Int {
-        return if (lyric === null) 1 else if (lyric.size === 0 ) 1 else lyric.size;
+        return if (lyric === null || lyric.size === 0) 1 else lyric.size;
     }
 
 

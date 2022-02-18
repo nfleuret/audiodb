@@ -4,14 +4,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
 import esgi.audiodb.song.Song
+import kotlinx.android.synthetic.main.artist.*
 import kotlinx.coroutines.NonDisposableHandle.parent
 
 class ListAdapterArtist(val artist: Artist?, val songs: List<Song>, val albums: List<Album>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -92,7 +95,7 @@ class ListAdapterArtist(val artist: Artist?, val songs: List<Song>, val albums: 
                 }
             })
 
-
+            Picasso.get().load(albums[position - 1].strAlbumThumb).into(cell.itemView.findViewById<ImageView>(R.id.album_picture));
 
             cell.itemView.findViewById<TextView>(R.id.album_name)
                 .setTextBold(

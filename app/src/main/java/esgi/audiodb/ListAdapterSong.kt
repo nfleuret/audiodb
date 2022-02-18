@@ -42,6 +42,7 @@ class ListAdapterSong(val songs: List<Song>, val artist: Artist) : RecyclerView.
             }
         })
 
+
         holder.itemView.findViewById<TextView>(R.id.title_name)
             .setTextBold(
                 songs[position].strTrack

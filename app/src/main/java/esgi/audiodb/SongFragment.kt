@@ -56,17 +56,22 @@ class SongFragment: Fragment() {
                     val lyricsWords = lyrics.Lyric.replace("\n"," ").split(" ");
                     var LyricsForOneOccurence: String = "";
                     var indice = 1;
-                    val pattern = "\\.".toRegex();
+                    val patternPoint = "\\.".toRegex();
+                    val patternMaj = "[A-Z]".toRegex()
 
                     lyricsWords.forEach { lyricWord ->
-                        val isTheEndOfASentence = pattern.containsMatchIn(lyricWord);
-                        LyricsForOneOccurence += "$lyricWord "
+                        val isTheEndOfASentence = patternPoint.containsMatchIn(lyricWord);
+                        val containAMaj = patternMaj.containsMatchIn(lyricWord);
+                        if(indice % 40 != 0 || !containAMaj) LyricsForOneOccurence += "$lyricWord ";
                         if(indice % 40 == 0 && isTheEndOfASentence) {
                             LyricsPast.add(LyricsForOneOccurence);
                             LyricsForOneOccurence = "";
+                        }else if (indice % 40 == 0 && containAMaj) {
+                            LyricsPast.add(LyricsForOneOccurence);
+                            LyricsForOneOccurence = "$lyricWord ";
                         }
 
-                        if(indice % 40 != 0 || isTheEndOfASentence) indice += 1
+                        if(indice % 40 != 0 || isTheEndOfASentence || containAMaj) indice += 1
                     }
                 }
 

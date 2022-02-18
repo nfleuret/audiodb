@@ -9,6 +9,8 @@ import android.util.Log
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 import esgi.audiodb.album.NetworkManager
+import esgi.audiodb.dao.Album
+import esgi.audiodb.dao.DatabaseManager
 import kotlinx.android.synthetic.main.artist.*
 import kotlinx.android.synthetic.main.song.*
 import kotlinx.coroutines.Dispatchers
@@ -22,6 +24,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.remy_activity_main)
         supportActionBar?.hide()
 
+        val databaseManager = DatabaseManager(this@MainActivity)
+
+        GlobalScope.launch {
+            databaseManager.addAlbum(
+                Album(
+                    name = "toto",
+                    image = "http://lolilol",
+                    artistName = "jean"
+                )
+            )
+        }
+
+        GlobalScope.launch {
+            println(databaseManager.listAlbum())
+
+        }
     }
 }
 

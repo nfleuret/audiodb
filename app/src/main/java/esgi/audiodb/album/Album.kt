@@ -9,7 +9,9 @@ constructor(
     val idAlbum: String,
     val strAlbum: String,
     val intYearReleased: Int,
-    val strAlbumThumb: String
+    val strAlbumThumb: String,
+    val intScore: String,
+    val intScoreVotes: String
 ): Parcelable {
 
 }
