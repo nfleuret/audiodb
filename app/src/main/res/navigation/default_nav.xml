@@ -2,17 +2,24 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/default_nav"
-    app:startDestination="@+id/album_fragment">
+    app:startDestination="@+id/artist_fragment">
     <fragment
         android:id="@+id/artist_fragment"
         android:name="esgi.audiodb.ArtistsFragment"
         android:label="artist_fragment" >
+        <action
+            android:id="@+id/action_artist_fragment_to_album_fragment"
+            app:destination="@id/album_fragment"
+            app:popUpTo="@id/artist_fragment" />
     </fragment>
 
     <fragment
         android:id="@+id/album_fragment"
         android:name="esgi.audiodb.AlbumFragment"
         android:label="album_fragment" >
+        <argument
+            android:name="album"
+            app:argType="esgi.audiodb.album.Album" />
     </fragment>
 
     <fragment

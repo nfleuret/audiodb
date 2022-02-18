@@ -4,11 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import esgi.audiodb.song.Song
 
-class ListAdapterSong(val songs: List<Song>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ListAdapterSong(val songs: List<Song>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
+    View.OnClickListener {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -36,6 +38,10 @@ class ListAdapterSong(val songs: List<Song>) : RecyclerView.Adapter<RecyclerView
             .setTextBold(
                 String.format("%d", position + 1)
             )
+    }
+
+    override fun onClick(p0: View?) {
+
     }
 }
 

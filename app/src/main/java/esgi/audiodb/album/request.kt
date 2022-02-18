@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import esgi.audiodb.song.Song
 import kotlinx.coroutines.Deferred
+import org.simpleframework.xml.Element
+import org.simpleframework.xml.Root
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
@@ -12,6 +14,9 @@ import retrofit2.http.Query
 data class ResponseArtist(@SerializedName("artists") val artists: List<Artist>)
 data class ResponseAlbum(@SerializedName("album") val albums: List<Album>)
 data class ResponseTrack(@SerializedName("track") val tracks: List<Song>)
+
+@Root(name = "GetLyricResult", strict = false)
+data class ResponseLyrics constructor(@field:Element(name = "Lyric") @param:Element(name = "Lyric") val Lyric: String)
 
 interface API {
     @retrofit2.http.GET("search.php")
@@ -24,7 +29,10 @@ interface API {
     fun getMostPopularTracks(@Query("s") artistName: String): Deferred<ResponseTrack>
 
     @retrofit2.http.GET("track.php")
-    fun getMostPopularTracks(@Query("m") artistId: Int): Deferred<ResponseTrack>
+    fun getTracksByAlbum(@Query("m") albumId: Int): Deferred<ResponseTrack>
+
+    @retrofit2.http.GET("SearchLyricDirect")
+    fun getLyrics(@Query("artist") artistName: String, @Query("song") songName: String): Deferred<ResponseLyrics>
 
 }
 
@@ -43,12 +51,12 @@ object NetworkManager {
         return getRetrofitFromUrl("https://theaudiodb.com/api/v1/json/523532/").getMostPopularTracks(artistName)
     }
 
-    suspend fun getTracksByAlbum(artistId: Int): Deferred<ResponseTrack> {
-        return getRetrofitFromUrl("https://theaudiodb.com/api/v1/json/523532/").getMostPopularTracks(artistId)
+    suspend fun getTracksByAlbum(albumId: Int): Deferred<ResponseTrack> {
+        return getRetrofitFromUrl("https://theaudiodb.com/api/v1/json/523532/").getTracksByAlbum(albumId)
     }
 
-    suspend fun getLyrics(artistName: String, songName: String): Deferred<ResponseTrack> {
-        return getRetrofitFromUrl("https://theaudiodb.com/api/v1/json/523532/").getMostPopularTracks(artistId)
+    suspend fun getLyrics(artistName: String, songName: String): Deferred<ResponseLyrics> {
+        return getRetrofitFromUrlXML("http://api.chartlyrics.com/apiv1.asmx/").getLyrics(artistName, songName)
     }
 
     fun getRetrofitFromUrl(url: String):  API{

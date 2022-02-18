@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,12 +41,15 @@ class AlbumFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
 
-        val album = Album("Revival",2017,"https://www.theaudiodb.com/images/media/album/thumb/twsyqy1513337658.jpg")
+        //val album = Album("Revival",2017,"https://www.theaudiodb.com/images/media/album/thumb/twsyqy1513337658.jpg")
 
         var songs: List<Song> = listOf();
+        val album = AlbumFragmentArgs.fromBundle(requireArguments()).album
+        print(album);
+
 
         GlobalScope.launch(Dispatchers.Default) {
-            val songsRequest = NetworkManager.getTracksByAlbum(2289652).await();
+            val songsRequest = NetworkManager.getTracksByAlbum(album.idAlbum.toInt()).await();
 
             withContext(Dispatchers.Main) {
                 songs = songsRequest.tracks;

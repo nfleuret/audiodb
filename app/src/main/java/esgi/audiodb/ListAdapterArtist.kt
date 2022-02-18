@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
 import esgi.audiodb.song.Song
+import kotlinx.coroutines.NonDisposableHandle.parent
 
 class ListAdapterArtist(val artist: Artist?, val songs: List<Song>, val albums: List<Album>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -38,15 +41,14 @@ class ListAdapterArtist(val artist: Artist?, val songs: List<Song>, val albums: 
                     .inflate(R.layout.title_banner, null, false)
             )
         } else {
-            return CellViewHolder(
-                LayoutInflater.from(parent.context)
+            val v: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.album_banner, null, false)
-            )
+
+            return CellViewHolder(v);
         }
     }
 
     override fun onBindViewHolder(cell: RecyclerView.ViewHolder, position: Int) {
-
         if (cell is TitleViewHolder) {
 
             var position = cell.adapterPosition
@@ -63,6 +65,16 @@ class ListAdapterArtist(val artist: Artist?, val songs: List<Song>, val albums: 
                 )
 
         } else if (cell is CellViewHolder) {
+
+            cell.itemView.setOnClickListener(object: View.OnClickListener {
+                override fun onClick(p0: View?) {
+                    findNavController().navigate(
+                        ListFragmentDirections.actionListFragmentToNavBarFragment(
+                            product
+                        )
+                    )
+                }
+            })
 
             var position = cell.adapterPosition
 
@@ -108,8 +120,6 @@ class ListAdapterArtist(val artist: Artist?, val songs: List<Song>, val albums: 
             return ITEM_SONG
         }
     }
-
-
 }
 class TitleSongViewHolder(v: View) : RecyclerView.ViewHolder(v)
 class DescriptionViewHolder(v: View) : RecyclerView.ViewHolder(v)
