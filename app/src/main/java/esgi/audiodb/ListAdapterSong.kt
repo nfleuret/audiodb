@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import esgi.audiodb.album.Artist
 import esgi.audiodb.song.Song
 
-class ListAdapterSong(val songs: List<Song>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
+class ListAdapterSong(val songs: List<Song>, val artist: Artist) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     View.OnClickListener {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -28,6 +30,17 @@ class ListAdapterSong(val songs: List<Song>) : RecyclerView.Adapter<RecyclerView
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         var position = holder.adapterPosition
 
+        holder.itemView.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(p0: View?) {
+                if (p0 != null && artist != null) {
+                    p0.findNavController().navigate(
+                        AlbumFragmentDirections.actionAlbumFragmentToSongFragment(
+                            songs[position], artist
+                        )
+                    )
+                }
+            }
+        })
 
         holder.itemView.findViewById<TextView>(R.id.title_name)
             .setTextBold(

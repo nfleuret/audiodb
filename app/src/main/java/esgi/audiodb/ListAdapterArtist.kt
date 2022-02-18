@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import esgi.audiodb.album.Album
@@ -53,6 +54,18 @@ class ListAdapterArtist(val artist: Artist?, val songs: List<Song>, val albums: 
 
             var position = cell.adapterPosition
 
+            cell.itemView.setOnClickListener(object: View.OnClickListener {
+                override fun onClick(p0: View?) {
+                    if (p0 != null && artist != null) {
+                        p0.findNavController().navigate(
+                            ArtistsFragmentDirections.actionArtistFragmentToSongFragment(
+                                songs[position - (countAlbumDisplay + 2)], artist
+                            )
+                        )
+                    }
+                }
+            })
+
 
             cell.itemView.findViewById<TextView>(R.id.title_name)
                 .setTextBold(
@@ -65,18 +78,21 @@ class ListAdapterArtist(val artist: Artist?, val songs: List<Song>, val albums: 
                 )
 
         } else if (cell is CellViewHolder) {
+            var position = cell.adapterPosition
 
             cell.itemView.setOnClickListener(object: View.OnClickListener {
                 override fun onClick(p0: View?) {
-                    findNavController().navigate(
-                        ListFragmentDirections.actionListFragmentToNavBarFragment(
-                            product
+                    if (p0 != null && artist != null) {
+                        p0.findNavController().navigate(
+                            ArtistsFragmentDirections.actionArtistFragmentToAlbumFragment(
+                                albums[position - 1], artist
+                            )
                         )
-                    )
+                    }
                 }
             })
 
-            var position = cell.adapterPosition
+
 
             cell.itemView.findViewById<TextView>(R.id.album_name)
                 .setTextBold(

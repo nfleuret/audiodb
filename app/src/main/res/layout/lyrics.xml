@@ -34,6 +34,7 @@
         android:id="@+id/song_lyrics"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/guideline_v_5"
+        app:layout_constraintRight_toLeftOf="@id/guideline_v_95"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"

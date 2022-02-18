@@ -45,7 +45,7 @@ class AlbumFragment: Fragment() {
 
         var songs: List<Song> = listOf();
         val album = AlbumFragmentArgs.fromBundle(requireArguments()).album
-        print(album);
+        val artist = AlbumFragmentArgs.fromBundle(requireArguments()).artist
 
 
         GlobalScope.launch(Dispatchers.Default) {
@@ -54,19 +54,19 @@ class AlbumFragment: Fragment() {
             withContext(Dispatchers.Main) {
                 songs = songsRequest.tracks;
                 album_title.text = album.strAlbum
-                album_number_song.text = songs.size.toString() + "chansons";
+                album_number_song.text = songs.size.toString() + " chansons";
                 Picasso.get().load(album.strAlbumThumb).into(image_album);
                 Picasso.get().load(album.strAlbumThumb).into(image_album_min);
 
 
-                title_list.adapter = ListAdapterSong(songs);
+                title_list.adapter = ListAdapterSong(songs, artist);
             }
         }
 
 
         title_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)
-            adapter = ListAdapterSong(songs);
+            adapter = ListAdapterSong(songs, artist);
             addItemDecoration(
                 DividerItemDecoration(
                     requireContext(),

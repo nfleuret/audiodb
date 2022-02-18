@@ -12,18 +12,22 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import retrofit2.http.Query
 
 data class ResponseArtist(@SerializedName("artists") val artists: List<Artist>)
+data class ResponseAlbums(@SerializedName("album") val albums: List<Album>)
 data class ResponseAlbum(@SerializedName("album") val albums: List<Album>)
 data class ResponseTrack(@SerializedName("track") val tracks: List<Song>)
 
 @Root(name = "GetLyricResult", strict = false)
-data class ResponseLyrics constructor(@field:Element(name = "Lyric") @param:Element(name = "Lyric") val Lyric: String)
+data class ResponseLyrics constructor(@field:Element(name = "Lyric", required=false) @param:Element(name = "Lyric", required=false) public val Lyric: String?)
 
 interface API {
     @retrofit2.http.GET("search.php")
     fun getArtistInfo(@Query("s") artistName: String): Deferred<ResponseArtist>
 
     @retrofit2.http.GET("searchalbum.php")
-    fun getAlbums(@Query("s") artistName: String): Deferred<ResponseAlbum>
+    fun getAlbums(@Query("s") artistName: String): Deferred<ResponseAlbums>
+
+    @retrofit2.http.GET("album.php")
+    fun getAlbumById(@Query("m") albumId: String): Deferred<ResponseAlbum>
 
     @retrofit2.http.GET("track-top10.php")
     fun getMostPopularTracks(@Query("s") artistName: String): Deferred<ResponseTrack>
@@ -43,8 +47,12 @@ object NetworkManager {
         return getRetrofitFromUrl("https://www.theaudiodb.com/api/v1/json/2/").getArtistInfo(artistName);
     }
 
-    suspend fun getAlbums(artistName: String):  Deferred<ResponseAlbum> {
+    suspend fun getAlbums(artistName: String):  Deferred<ResponseAlbums> {
         return getRetrofitFromUrl("https://theaudiodb.com/api/v1/json/523532/").getAlbums(artistName)
+    }
+
+    suspend fun getAlbumById(albumId: String): Deferred<ResponseAlbum> {
+        return getRetrofitFromUrl("https://theaudiodb.com/api/v1/json/523532/").getAlbumById(albumId)
     }
 
     suspend fun getMostPopularTracks(artistName: String): Deferred<ResponseTrack> {
@@ -56,7 +64,7 @@ object NetworkManager {
     }
 
     suspend fun getLyrics(artistName: String, songName: String): Deferred<ResponseLyrics> {
-        return getRetrofitFromUrlXML("http://api.chartlyrics.com/apiv1.asmx/").getLyrics(artistName, songName)
+        return getRetrofitFromUrlXML("http://api.chartlyrics.com/apiv1.asmx/").getLyrics(artistName.replace(" ", "%20"), songName.replace(" ", "%20"))
     }
 
     fun getRetrofitFromUrl(url: String):  API{
