@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 import esgi.audiodb.album.NetworkManager
 import esgi.audiodb.dao.Album
+import esgi.audiodb.dao.Artist
 import esgi.audiodb.dao.DatabaseManager
 import kotlinx.android.synthetic.main.artist.*
 import kotlinx.android.synthetic.main.song.*
@@ -32,6 +33,12 @@ class MainActivity : AppCompatActivity() {
                     name = "toto",
                     image = "http://lolilol",
                     artistName = "jean"
+                )
+            )
+            databaseManager.addArtist(
+                Artist(
+                    name = "toto",
+                    image = "http://lolilol",
                 )
             )
         }

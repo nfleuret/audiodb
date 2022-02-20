@@ -8,14 +8,21 @@
         <entry key="app/src/main/res/drawable/ic_accueil_fav.xml" value="0.25462962962962965" />
         <entry key="app/src/main/res/drawable/ic_arrow.xml" value="0.3026041666666667" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.25462962962962965" />
+        <entry key="app/src/main/res/drawable/ic_like_of_background.xml" value="0.2421875" />
+        <entry key="app/src/main/res/drawable/ic_like_off.xml" value="0.2421875" />
         <entry key="app/src/main/res/drawable/ic_like_on.xml" value="0.25462962962962965" />
+        <entry key="app/src/main/res/drawable/ic_placeholder_album.xml" value="0.2421875" />
         <entry key="app/src/main/res/drawable/ic_right_arrow.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/drawable/ic_right_arrow_background.xml" value="0.16822916666666668" />
+        <entry key="app/src/main/res/drawable/ic_star_background.xml" value="0.2421875" />
+        <entry key="app/src/main/res/drawable/ic_star_foreground.xml" value="0.2421875" />
+        <entry key="app/src/main/res/drawable/like_off.xml" value="0.2421875" />
+        <entry key="app/src/main/res/drawable/right_arrow.xml" value="0.2421875" />
         <entry key="app/src/main/res/drawable/round_outline.xml" value="0.20677083333333332" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21388888888888888" />
         <entry key="app/src/main/res/layout/album.xml" value="0.38284518828451886" />
         <entry key="app/src/main/res/layout/album_banner.xml" value="0.5549511933433398" />
-        <entry key="app/src/main/res/layout/artist.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/artist.xml" value="0.67" />
         <entry key="app/src/main/res/layout/artist_description.xml" value="0.27309782608695654" />
         <entry key="app/src/main/res/layout/lyrics.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/layout/remy_activity_main.xml" value="0.15208333333333332" />

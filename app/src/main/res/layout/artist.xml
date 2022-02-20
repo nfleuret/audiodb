@@ -83,6 +83,18 @@
         android:layout_marginTop="5dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_like_on"
+        android:visibility="invisible"
+        />
+
+    <ImageView
+        android:id="@+id/ic_fav_off"
+        app:layout_constraintTop_toTopOf="@+id/guideline_10"
+        app:layout_constraintRight_toRightOf="@+id/guideline_v_95"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_like_off"
+        android:visibility="visible"
         />
 
     <TextView

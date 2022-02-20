@@ -15,9 +15,11 @@ import com.squareup.picasso.Picasso
 import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
 import esgi.audiodb.album.NetworkManager
+import esgi.audiodb.dao.DatabaseManager
 import esgi.audiodb.song.Song
 import kotlinx.android.synthetic.main.artist.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 
 
 class ArtistsFragment: Fragment() {
@@ -38,15 +40,34 @@ class ArtistsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
-        Log.w("ceci est un message", "encore un");
         var albums: List<Album> = listOf()
         var songs: List<Song> = listOf()
         var artist: Artist? = null;
+        val databaseManager = context?.let { DatabaseManager(it) }
+
+        GlobalScope.launch {
+            databaseManager?.listenToArtistByName("Eminem")
+                ?.collect {
+                    println(it)
+
+                    withContext(Dispatchers.Main) {
+                        if(it.size === 0) {
+                            ic_fav_off.visibility = View.VISIBLE;
+                            ic_fav.visibility = View.INVISIBLE;
+                        }else {
+                            ic_fav_off.visibility = View.INVISIBLE;
+                            ic_fav.visibility = View.VISIBLE;
+                        }
+                    }
+                }
+
+        }
 
         GlobalScope.launch(Dispatchers.Default) {
             val artists = NetworkManager.getArtistInfo("eminem").await();
             val mostPopularTitles = NetworkManager.getMostPopularTracks("eminem").await();
             val albumsFromApi = NetworkManager.getAlbums("eminem").await();
+
 
             withContext(Dispatchers.Main) {
                 name_artist.text = artists.artists[0].strArtist;
@@ -55,10 +76,27 @@ class ArtistsFragment: Fragment() {
                 artist = artists.artists[0];
                 albums = albumsFromApi.albums;
                 songs = mostPopularTitles.tracks;
+                ic_fav_off.setOnClickListener {
+                    GlobalScope.launch(Dispatchers.Default) {
+                        databaseManager?.addArtist(esgi.audiodb.dao.Artist(artists.artists[0].strArtist, artists.artists[0].strArtistThumb))
+                    }
+                }
+
+                ic_grey.setOnClickListener {
+                    GlobalScope.launch(Dispatchers.Default) {
+                        databaseManager?.deleteArtist(esgi.audiodb.dao.Artist(artists.artists[0].strArtist, artists.artists[0].strArtistThumb))
+                    }
+                }
 
                 album_list.adapter = ListAdapterArtist(artist, songs, albums);
             }
         }
+
+
+
+
+
+
 
         album_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)

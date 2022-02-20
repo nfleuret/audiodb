@@ -27,7 +27,7 @@ interface DbDao {
     fun listArtists() : Flow<List<Artist>>
 
     @Query("SELECT * FROM Artist WHERE id = :artistName")
-    fun artistByName(artistName: String): List<Artist>
+    fun artistByName(artistName: String): Flow<List<Artist>>
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -43,7 +43,7 @@ interface DbDao {
     fun listAlbums() : Flow<List<Album>>
 
     @Query("SELECT * FROM Album WHERE  id = :label")
-    fun albumByName(label: String): List<Album>
+    fun albumByName(label: String): Flow<List<Album>>
 }
 
 @Database(entities = [Artist::class, Album::class], version = 2)
@@ -55,7 +55,7 @@ class DatabaseManager(context: Context) {
 
     private val db = Room.databaseBuilder(
         context,
-        AppDatabase::class.java, "db.sqlite",
+        AppDatabase::class.java, "audiodb.sqlite",
     ).build()
 
 
@@ -67,20 +67,20 @@ class DatabaseManager(context: Context) {
         db.artistDao().addAlbum(album)
     }
 
-    fun listArtist() {
-        db.artistDao().listArtists()
+    fun deleteArtist(artist: Artist) {
+        db.artistDao().deleteArtist(artist);
     }
 
     fun listAlbum() {
         db.artistDao().listAlbums()
     }
 
-    fun findArtistByName(artistName: String) {
-        db.artistDao().artistByName(artistName)
+    fun listenToArtistByName(artistName: String): Flow<List<Artist>> {
+        return db.artistDao().artistByName(artistName)
     }
 
-    fun findAlbumByName(albumName: String) {
-        db.artistDao().albumByName(albumName)
+    fun listenToAlbumByName(albumName: String): Flow<List<Album>> {
+        return db.artistDao().albumByName(albumName)
     }
 
     suspend fun listenToArtistsChanges(): Flow<List<Artist>> {
