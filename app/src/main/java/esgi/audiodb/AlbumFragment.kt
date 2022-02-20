@@ -1,24 +1,21 @@
 package esgi.audiodb
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.collect
 import esgi.audiodb.album.NetworkManager
 import esgi.audiodb.dao.DatabaseManager
 import esgi.audiodb.song.Song
 import kotlinx.android.synthetic.main.album.*
+import kotlinx.android.synthetic.main.album.ic_fav
+import kotlinx.android.synthetic.main.album.ic_fav_off
+import kotlinx.android.synthetic.main.album.ic_grey
 import kotlinx.android.synthetic.main.artist.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -47,6 +44,25 @@ class AlbumFragment: Fragment() {
         var songs: List<Song> = listOf();
         val album = AlbumFragmentArgs.fromBundle(requireArguments()).album
         val artist = AlbumFragmentArgs.fromBundle(requireArguments()).artist
+        val databaseManager = context?.let { DatabaseManager(it) }
+
+
+        GlobalScope.launch {
+            databaseManager?.listenToAlbumByName(album.strAlbum)
+                ?.collect {
+                    println(it)
+
+                    withContext(Dispatchers.Main) {
+                        if(it.size === 0) {
+                            ic_fav.visibility = View.INVISIBLE
+                            ic_fav_off.visibility = View.VISIBLE
+                        }else {
+                            ic_fav.visibility = View.VISIBLE
+                            ic_fav_off.visibility = View.INVISIBLE
+                        }
+                    }
+                }
+        }
 
 
         GlobalScope.launch(Dispatchers.Default) {
@@ -63,9 +79,21 @@ class AlbumFragment: Fragment() {
                 Picasso.get().load(album.strAlbumThumb).into(image_album_min);
                 album_mark.text = album.intScore;
                 album_number_vote.text = album.intScoreVotes + " votes";
+                album_description.text = album.strDescriptionEN;
+                ic_fav_off.setOnClickListener {
+                    GlobalScope.launch(Dispatchers.Default) {
+                        databaseManager?.addAlbum(esgi.audiodb.dao.Album(album.strAlbum, album.strAlbumThumb, artist.strArtist))
+                    }
+                }
+
+                ic_grey.setOnClickListener {
+                    GlobalScope.launch(Dispatchers.Default) {
+                        databaseManager?.deleteAlbum(esgi.audiodb.dao.Album(album.strAlbum, album.strAlbumThumb, artist.strArtist))
+                    }
+                }
 
 
-                    title_list.adapter = ListAdapterSong(songs, artist);
+                title_list.adapter = ListAdapterSong(songs, artist);
             }
         }
 

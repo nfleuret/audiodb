@@ -175,6 +175,18 @@
         android:layout_marginTop="5dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_like_on"
+        android:visibility="invisible"
+        />
+
+    <ImageView
+        android:id="@+id/ic_fav_off"
+        app:layout_constraintTop_toTopOf="@+id/guideline_10"
+        app:layout_constraintRight_toRightOf="@+id/guideline_v_95"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_like_off"
+        android:visibility="visible"
         />
 
     <androidx.cardview.widget.CardView
@@ -365,13 +377,17 @@
         android:id="@+id/album_description"
         app:layout_constraintTop_toBottomOf="@+id/fav_card"
         app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
+        app:layout_constraintRight_toLeftOf="@+id/guideline_v_95"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="60"
         android:textSize="14sp"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
-        android:text="lorem ipseum dsqd sqd d qsd qsd  dqs d qsd  d sqdsqdsqdsq dqsdsqdqsdsqd sqdsqdsqdsq qsdqsdsqdsqd qsdsqdsqdqsd sqdsqdsqdsqds qsdsqdsq sdsqdqsdqsd dqsdsqdsqds qsdqsdsqdsqdsq"
+        android:maxLines="4"
+        android:ellipsize = "end"
+        android:text="Loading..."
+        android:background="@color/white"
         />
 
 

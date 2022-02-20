@@ -17,9 +17,6 @@ interface DbDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addArtist(artist: Artist)
 
-    @Update
-    fun updateArtist(artist: Artist)
-
     @Delete
     fun deleteArtist(artist: Artist)
 
@@ -29,15 +26,11 @@ interface DbDao {
     @Query("SELECT * FROM Artist WHERE id = :artistName")
     fun artistByName(artistName: String): Flow<List<Artist>>
 
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addAlbum(artist: Album)
 
-    @Update
-    fun updateAlbum(artist: Album)
-
     @Delete
-    fun deleteAlbum(artist: Album)
+    fun deleteAlbum(album: Album)
 
     @Query("SELECT * FROM Album")
     fun listAlbums() : Flow<List<Album>>
@@ -71,8 +64,8 @@ class DatabaseManager(context: Context) {
         db.artistDao().deleteArtist(artist);
     }
 
-    fun listAlbum() {
-        db.artistDao().listAlbums()
+    fun deleteAlbum(album: Album) {
+        db.artistDao().deleteAlbum(album);
     }
 
     fun listenToArtistByName(artistName: String): Flow<List<Artist>> {
@@ -83,7 +76,11 @@ class DatabaseManager(context: Context) {
         return db.artistDao().albumByName(albumName)
     }
 
-    suspend fun listenToArtistsChanges(): Flow<List<Artist>> {
+    fun listenToArtistsChanges(): Flow<List<Artist>> {
         return db.artistDao().listArtists()
+    }
+
+     fun listenToAlbumsChanges(): Flow<List<Album>> {
+        return db.artistDao().listAlbums()
     }
 }

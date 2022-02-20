@@ -11,7 +11,9 @@ constructor(
     val intYearReleased: Int,
     val strAlbumThumb: String,
     val intScore: String,
-    val intScoreVotes: String
+    val intScoreVotes: String,
+    val strDescriptionEN: String,
+    val strDescriptionFR: String
 ): Parcelable {
 
 }
