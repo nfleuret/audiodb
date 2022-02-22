@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         GlobalScope.launch {
-            println(databaseManager.listAlbum())
+            println(databaseManager.listenToAlbumsChanges())
 
         }
     }
