@@ -15,17 +15,21 @@
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/drawable/right_arrow.xml" value="0.3675" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/drawable/round_outline.xml" value="0.3675" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/activity_main.xml" value="0.13796296296296295" />
+        <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/album.xml" value="0.22" />
+        <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/album_banner.xml" value="0.25" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/artist.xml" value="0.25" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/favorites.xml" value="0.1" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/fragment_blank.xml" value="0.1" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/fragment_list.xml" value="0.25" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/fragment_product_details.xml" value="0.17831813576494426" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/music_main.xml" value="0.15925925925925927" />
+        <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/ranking_song_list_item.xml" value="0.1" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/rankings.xml" value="0.33" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/rankings_albums.xml" value="0.1" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/rankings_title.xml" value="0.1" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/remy_activity_main.xml" value="0.11296296296296296" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/search.xml" value="0.1" />
+        <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/song_title.xml" value="0.1" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/title_banner.xml" value="0.17831813576494426" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/menu/bottom_tabs.xml" value="0.3" />
         <entry key="app/src/main/res/drawable/arrow.xml" value="0.3026041666666667" />
@@ -33,26 +37,14 @@
         <entry key="app/src/main/res/drawable/ic_accueil_fav.xml" value="0.25462962962962965" />
         <entry key="app/src/main/res/drawable/ic_arrow.xml" value="0.3026041666666667" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.25462962962962965" />
-        <entry key="app/src/main/res/drawable/ic_like_of_background.xml" value="0.2421875" />
-        <entry key="app/src/main/res/drawable/ic_like_off.xml" value="0.2421875" />
         <entry key="app/src/main/res/drawable/ic_like_on.xml" value="0.25462962962962965" />
-        <entry key="app/src/main/res/drawable/ic_placeholder_album.xml" value="0.2421875" />
         <entry key="app/src/main/res/drawable/ic_right_arrow.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/drawable/ic_right_arrow_background.xml" value="0.16822916666666668" />
-        <entry key="app/src/main/res/drawable/ic_star_background.xml" value="0.2421875" />
-        <entry key="app/src/main/res/drawable/ic_star_foreground.xml" value="0.2421875" />
-        <entry key="app/src/main/res/drawable/like_off.xml" value="0.2421875" />
-        <entry key="app/src/main/res/drawable/right_arrow.xml" value="0.2421875" />
-        <entry key="app/src/main/res/drawable/round_outline.xml" value="0.20677083333333332" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21388888888888888" />
         <entry key="app/src/main/res/layout/album.xml" value="0.5046767661049996" />
         <entry key="app/src/main/res/layout/album_banner.xml" value="0.5549511933433398" />
-        <entry key="app/src/main/res/layout/artist.xml" value="0.67" />
-        <entry key="app/src/main/res/layout/artist_description.xml" value="0.27309782608695654" />
-        <entry key="app/src/main/res/layout/lyrics.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/layout/artist.xml" value="0.25" />
         <entry key="app/src/main/res/layout/remy_activity_main.xml" value="0.15208333333333332" />
-        <entry key="app/src/main/res/layout/song.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/song_title.xml" value="0.27309782608695654" />
         <entry key="app/src/main/res/layout/title_banner.xml" value="0.8904370927472046" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.16822916666666668" />
