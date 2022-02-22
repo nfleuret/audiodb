@@ -7,8 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
+import com.squareup.picasso.Picasso
 import esgi.audiodb.album.Album
+import esgi.audiodb.album.NetworkManager
+import esgi.audiodb.album.ResponseAlbum
 import esgi.audiodb.song.Song
+import kotlinx.android.synthetic.main.artist.*
+import kotlinx.android.synthetic.main.song.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SongFragment: Fragment() {
     override fun onCreateView(
@@ -27,22 +38,67 @@ class SongFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
-        Log.w("ceci est un message", "encore un");
-        val albums: List<Album> = listOf(
-            Album("After Hours", 2020),
-            Album("Star Boy", 2016),
-            Album("Beauty behind the Madness", 2015)
-        )
-        val songs: List<Song> = listOf(
-            Song("Walk on Water feat.Beyoncé"),
-            Song("Star Boy"),
-            Song("Beauty behind the Madness"),
-            Song("Walk on Water feat.Beyoncé"),
-            Song("Star Boy"),
-            Song("Beauty behind the Madness"),
-            Song("Walk on Water feat.Beyoncé"),
-            Song("Star Boy"),
-            Song("Beauty behind the Madness")
-        )
+
+        val song = SongFragmentArgs.fromBundle(requireArguments()).song
+        val artist = SongFragmentArgs.fromBundle(requireArguments()).artist
+        var album: ResponseAlbum? = null;
+
+        GlobalScope.launch(Dispatchers.Default) {
+            try {
+                album = NetworkManager.getAlbumById(song.idAlbum).await();
+            }catch (e: Error) {
+
+            }
+            val LyricsPast: MutableList<String> = mutableListOf();
+            try {
+                val lyrics = NetworkManager.getLyrics(artist.strArtist, song.strTrack).await();
+                if(lyrics.Lyric !== null) {
+                    val lyricsWords = lyrics.Lyric.replace("\n"," ").split(" ");
+                    var LyricsForOneOccurence: String = "";
+                    var indice = 1;
+                    val patternPoint = "\\.".toRegex();
+                    val patternMaj = "[A-Z]".toRegex()
+
+                    lyricsWords.forEach { lyricWord ->
+                        val isTheEndOfASentence = patternPoint.containsMatchIn(lyricWord);
+                        val containAMaj = patternMaj.containsMatchIn(lyricWord);
+                        if(indice % 40 != 0 || !containAMaj) LyricsForOneOccurence += "$lyricWord ";
+                        if(indice % 40 == 0 && isTheEndOfASentence) {
+                            LyricsPast.add(LyricsForOneOccurence);
+                            LyricsForOneOccurence = "";
+                        }else if (indice % 40 == 0 && containAMaj) {
+                            LyricsPast.add(LyricsForOneOccurence);
+                            LyricsForOneOccurence = "$lyricWord ";
+                        }
+
+                        if(indice % 40 != 0 || isTheEndOfASentence || containAMaj) indice += 1
+                    }
+                }
+
+            }catch (e: RuntimeException) {
+                println("on passe là")
+            }
+
+
+            withContext(Dispatchers.Main) {
+
+                Picasso.get().load(album!!.albums[0].strAlbumThumb).into(image_album_min);
+                Picasso.get().load(album!!.albums[0].strAlbumThumb).into(image_album);
+                album_title.text = song.strTrack;
+                lyrics_recycler.adapter = ListAdapterLyric(LyricsPast);
+            }
+        }
+
+        lyrics_recycler.run {
+            layoutManager = GridLayoutManager(requireContext(), 1)
+            adapter = ListAdapterLyric(null);
+            addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    0
+                )
+            )
+        }
     }
 }
+

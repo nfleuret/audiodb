@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
     >
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_v_5"
+        android:id="@+id/guideline_10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_v_8"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.05"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_v_10"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.10"
         app:layout_constraintTop_toTopOf="parent"
         />
 
@@ -33,37 +35,23 @@
         />
 
     <TextView
-        android:id="@+id/title_number"
+        android:id="@+id/artist_song_most_appreciate"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/guideline_v_5"
-        android:layout_width="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="60"
         android:textStyle="bold"
-        android:textSize="14sp"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/black"
-        android:text="1"
+        android:text="Titres les plus appréciés"
         />
-
-    <TextView
-        android:id="@+id/title_name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/guideline_v_10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="60"
-        android:textSize="14sp"
-        android:textColor="@color/black"
-        android:text="Walk on Water feat. Beyoncé"
-        />
-
 
     <View
         android:id="@+id/artist_separator_2"
-        app:layout_constraintTop_toBottomOf="@+id/title_name"
-        app:layout_constraintLeft_toRightOf="@+id/guideline_v_10"
+        app:layout_constraintTop_toBottomOf="@+id/artist_song_most_appreciate"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
         android:layout_marginTop="10dp"
         android:layout_width="0dp"
         android:layout_height="0.5dp"

@@ -2,7 +2,6 @@ package esgi.audiodb
 
 import android.content.Context
 import android.os.Bundle
-import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +11,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import esgi.audiodb.album.Album
+import esgi.audiodb.album.Artist
+import esgi.audiodb.album.NetworkManager
+import esgi.audiodb.dao.DatabaseManager
 import esgi.audiodb.song.Song
 import kotlinx.android.synthetic.main.artist.*
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 
 
 class ArtistsFragment: Fragment() {
@@ -35,41 +40,67 @@ class ArtistsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
-        Log.w("ceci est un message", "encore un");
-        val albums: List<Album> = listOf(
-            Album("After Hours", 2020),
-            Album("Star Boy", 2016),
-            Album("Beauty behind the Madness", 2015)
-        )
-        val songs: List<Song> = listOf(
-            Song("Walk on Water feat.Beyoncé"),
-            Song("Star Boy"),
-            Song("Beauty behind the Madness"),
-            Song("Walk on Water feat.Beyoncé"),
-            Song("Star Boy"),
-            Song("Beauty behind the Madness"),
-            Song("Walk on Water feat.Beyoncé"),
-            Song("Star Boy"),
-            Song("Beauty behind the Madness")
-        )
+        var albums: List<Album> = listOf()
+        var songs: List<Song> = listOf()
+        var artist: Artist? = null;
+        val databaseManager = context?.let { DatabaseManager(it) }
+
+        GlobalScope.launch {
+            databaseManager?.listenToArtistByName("Eminem")
+                ?.collect {
+                    println(it)
+
+                    withContext(Dispatchers.Main) {
+                        if(it.size === 0) {
+                            ic_fav_off.visibility = View.VISIBLE;
+                            ic_fav.visibility = View.INVISIBLE;
+                        }else {
+                            ic_fav_off.visibility = View.INVISIBLE;
+                            ic_fav.visibility = View.VISIBLE;
+                        }
+                    }
+                }
+
+        }
+
+        GlobalScope.launch(Dispatchers.Default) {
+            val artists = NetworkManager.getArtistInfo("eminem").await();
+            val mostPopularTitles = NetworkManager.getMostPopularTracks("eminem").await();
+            val albumsFromApi = NetworkManager.getAlbums("eminem").await();
+
+
+            withContext(Dispatchers.Main) {
+                name_artist.text = artists.artists[0].strArtist;
+                artist_localization.text = artists.artists[0].strCountry;
+                Picasso.get().load(artists.artists[0].strArtistThumb).into(image_artist);
+                artist = artists.artists[0];
+                albums = albumsFromApi.albums;
+                songs = mostPopularTitles.tracks;
+                ic_fav_off.setOnClickListener {
+                    GlobalScope.launch(Dispatchers.Default) {
+                        databaseManager?.addArtist(esgi.audiodb.dao.Artist(artists.artists[0].strArtist, artists.artists[0].strArtistThumb))
+                    }
+                }
+
+                ic_grey.setOnClickListener {
+                    GlobalScope.launch(Dispatchers.Default) {
+                        databaseManager?.deleteArtist(esgi.audiodb.dao.Artist(artists.artists[0].strArtist, artists.artists[0].strArtistThumb))
+                    }
+                }
+
+                album_list.adapter = ListAdapterArtist(artist, songs, albums);
+            }
+        }
+
+
+
+
+
+
 
         album_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)
-            adapter = ListAdapter(albums, context,  object: OnItemClickedListener {
-                override fun onItemClicked(album: Album) {
-                }
-            });
-            addItemDecoration(
-                DividerItemDecoration(
-                    requireContext(),
-                    0
-                )
-            )
-        }
-
-        title_list.run {
-            layoutManager = GridLayoutManager(requireContext(), 1)
-            adapter = ListAdapterSong(songs, context);
+            adapter = ListAdapterArtist(artist, songs, albums);
             addItemDecoration(
                 DividerItemDecoration(
                     requireContext(),
@@ -79,41 +110,4 @@ class ArtistsFragment: Fragment() {
         }
     }
 
-
-    class ListAdapter(val albums: List<Album>, val context: Context, val listener: OnItemClickedListener) : RecyclerView.Adapter<ListItemCell>() {
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemCell {
-            return ListItemCell(
-                LayoutInflater.from(parent.context)
-                    .inflate(R.layout.album_banner, parent, false)
-            )
-        }
-
-        override fun onBindViewHolder(cell: ListItemCell, position: Int) {
-
-            var position = cell.adapterPosition
-
-            cell.itemView.findViewById<TextView>(R.id.album_name)
-                .setTextBold(
-                    albums[position].name
-                )
-            cell.itemView.findViewById<TextView>(R.id.album_year)
-                .setTextBold(
-                    albums[position].year.toString()
-                )
-        }
-
-        override fun getItemCount(): Int {
-            return albums.size;
-        }
-
-    }
-
-    class ListItemCell(v: View) : RecyclerView.ViewHolder(v) {
-
-    }
-}
-
-interface OnItemClickedListener {
-    fun onItemClicked(album: Album)
 }

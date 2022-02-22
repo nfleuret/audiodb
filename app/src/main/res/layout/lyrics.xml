@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_v_5"
@@ -33,40 +31,16 @@
         />
 
     <TextView
-        android:id="@+id/title_number"
+        android:id="@+id/song_lyrics"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/guideline_v_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="60"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:textColor="@color/black"
-        android:text="1"
-        />
-
-    <TextView
-        android:id="@+id/title_name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/guideline_v_10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="60"
-        android:textSize="14sp"
-        android:textColor="@color/black"
-        android:text="Walk on Water feat. Beyoncé"
-        />
-
-
-    <View
-        android:id="@+id/artist_separator_2"
-        app:layout_constraintTop_toBottomOf="@+id/title_name"
-        app:layout_constraintLeft_toRightOf="@+id/guideline_v_10"
-        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_v_5"
+        app:layout_constraintRight_toLeftOf="@id/guideline_v_95"
         android:layout_width="0dp"
-        android:layout_height="0.5dp"
-        android:background="@color/grey"/>
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/grey"
+        android:text="je suis une pomme"
+        android:layout_marginTop="20dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

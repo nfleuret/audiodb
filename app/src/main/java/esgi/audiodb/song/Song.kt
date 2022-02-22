@@ -5,7 +5,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class Song constructor(
-    val name: String,
+    val strTrack: String,
+    val idAlbum: String
 ): Parcelable {
 
 }

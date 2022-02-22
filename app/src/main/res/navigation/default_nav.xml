@@ -7,18 +7,42 @@
         android:id="@+id/artist_fragment"
         android:name="esgi.audiodb.ArtistsFragment"
         android:label="artist_fragment" >
+        <action
+            android:id="@+id/action_artist_fragment_to_album_fragment"
+            app:destination="@id/album_fragment"
+            app:popUpTo="@id/artist_fragment" />
+        <action
+            android:id="@+id/action_artist_fragment_to_song_fragment"
+            app:destination="@id/song_fragment"
+            app:popUpTo="@id/artist_fragment" />
     </fragment>
 
     <fragment
         android:id="@+id/album_fragment"
         android:name="esgi.audiodb.AlbumFragment"
         android:label="album_fragment" >
+        <argument
+            android:name="album"
+            app:argType="esgi.audiodb.album.Album" />
+        <argument
+            android:name="artist"
+            app:argType="esgi.audiodb.album.Artist" />
+        <action
+            android:id="@+id/action_album_fragment_to_song_fragment"
+            app:destination="@id/song_fragment"
+            app:popUpTo="@id/album_fragment" />
     </fragment>
 
     <fragment
         android:id="@+id/song_fragment"
         android:name="esgi.audiodb.SongFragment"
         android:label="song_fragment" >
+        <argument
+            android:name="song"
+            app:argType="esgi.audiodb.song.Song" />
+        <argument
+            android:name="artist"
+            app:argType="esgi.audiodb.album.Artist" />
     </fragment>
     <fragment
         android:id="@+id/musicMainFragment"
