@@ -4,4 +4,6 @@
     <string name="search">Rechercher</string>
     <string name="ranking">Classements</string>
     <string name="favorite">Favoris</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fav_subtitle">Mes artistes et albums</string>
 </resources>
