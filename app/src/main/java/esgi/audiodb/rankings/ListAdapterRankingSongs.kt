@@ -5,9 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import esgi.audiodb.ArtistsFragmentDirections
-import esgi.audiodb.OnListItemClickListener
 import esgi.audiodb.R
+import esgi.audiodb.album.Artist
 import esgi.audiodb.song.Song
 
 class ListAdapterRankingSongs(
@@ -24,16 +23,15 @@ class ListAdapterRankingSongs(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         var position = holder.adapterPosition
+        var artist : Artist = Artist("111304", "eminem","","", "")
         //set listener
         holder.itemView.setOnClickListener(object: View.OnClickListener {
             override fun onClick(view: View?) {
-//                if (view != null && artist != null) {
-//                    view.findNavController().navigate(
-//                        ArtistsFragmentDirections.actionArtistFragmentToSongFragment(
-//                            songs[position - (countAlbumDisplay + 2)], artist
-//                        )
-//                    )
-//                }
+                if (view != null && songs != null) {
+                    view.findNavController().navigate(
+                        RankingFragmentDirections.actionRankingFragment2ToArtistFragment(artist)
+                    )
+                }
             }
         })
 

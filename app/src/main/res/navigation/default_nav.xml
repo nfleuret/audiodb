@@ -15,6 +15,9 @@
             android:id="@+id/action_artist_fragment_to_song_fragment"
             app:destination="@id/song_fragment"
             app:popUpTo="@id/artist_fragment" />
+        <argument
+            android:name="artist"
+            app:argType="esgi.audiodb.album.Artist" />
     </fragment>
 
     <fragment
@@ -48,5 +51,13 @@
         android:id="@+id/musicMainFragment"
         android:name="esgi.audiodb.MusicMainFragment"
         android:label="MusicMainFragment" />
-
+    <fragment
+        android:id="@+id/rankingFragment2"
+        android:name="esgi.audiodb.rankings.RankingFragment"
+        android:label="RankingFragment" >
+        <action
+            android:id="@+id/action_rankingFragment2_to_artist_fragment"
+            app:destination="@id/artist_fragment" />
+    </fragment>
+Q
 </navigation>

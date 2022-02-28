@@ -22,6 +22,9 @@ data class ResponseAlbumTrending(@SerializedName("trending") val albums: List<Al
 data class ResponseLyrics constructor(@field:Element(name = "Lyric", required=false) @param:Element(name = "Lyric", required=false) public val Lyric: String?)
 
 interface API {
+    @retrofit2.http.GET("artist.php")
+    fun getArtistById(@Query("i") artistId: String): Deferred<ResponseArtist>
+
     @retrofit2.http.GET("search.php")
     fun getArtistInfo(@Query("s") artistName: String): Deferred<ResponseArtist>
 
@@ -49,6 +52,9 @@ interface API {
 
 object NetworkManager {
 
+    suspend fun getArtistById(artistId: String): Deferred<ResponseArtist> {
+        return getRetrofitFromUrl("https://www.theaudiodb.com/api/v1/json/2/").getArtistById(artistId);
+    }
 
     suspend fun getArtistInfo(artistName: String): Deferred<ResponseArtist> {
         return getRetrofitFromUrl("https://www.theaudiodb.com/api/v1/json/2/").getArtistInfo(artistName);
