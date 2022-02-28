@@ -9,7 +9,7 @@ class PagerAdapter(fragment: Fragment) :
     override fun createFragment(position: Int): Fragment {
         return when(position) {
             1 -> RankingAlbumFragment()
-            else -> RankingTitleFragment()
+            else -> RankingSongFragment()
         }
     }
 

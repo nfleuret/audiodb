@@ -1,10 +1,8 @@
 package esgi.audiodb
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -48,7 +46,7 @@ class ListAdapterSong(val songs: List<Song>, val artist: Artist) : RecyclerView.
                 songs[position].strTrack
             )
 
-        holder.itemView.findViewById<TextView>(R.id.title_number)
+        holder.itemView.findViewById<TextView>(R.id.song_number)
             .setTextBold(
                 String.format("%d", position + 1)
             )
