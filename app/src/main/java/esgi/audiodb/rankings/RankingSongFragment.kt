@@ -55,8 +55,7 @@ class RankingSongFragment : Fragment() {
         //2nd thread
         GlobalScope.launch(Dispatchers.Default) {
             val trendingSongs = NetworkManager.getTrendingsSingles().await();
-
-            songs = trendingSongs.tracks
+            songs = trendingSongs.songs
 
             //hors recycler view - global
             //main thread
@@ -70,10 +69,7 @@ class RankingSongFragment : Fragment() {
         //initial render
         song_list.run {
             layoutManager = LinearLayoutManager(context)
-
             adapter = ListAdapterRankingSongs(songs);
         }
     }
-
-
 }

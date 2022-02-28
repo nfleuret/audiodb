@@ -15,7 +15,8 @@ data class ResponseArtist(@SerializedName("artists") val artists: List<Artist>)
 data class ResponseAlbums(@SerializedName("album") val albums: List<Album>)
 data class ResponseAlbum(@SerializedName("album") val albums: List<Album>)
 data class ResponseTrack(@SerializedName("track") val tracks: List<Song>)
-data class ResponseTrending(@SerializedName("trending") val tracks: List<Song>)
+data class ResponseSongTrending(@SerializedName("trending") val songs: List<Song>)
+data class ResponseAlbumTrending(@SerializedName("trending") val albums: List<Album>)
 
 @Root(name = "GetLyricResult", strict = false)
 data class ResponseLyrics constructor(@field:Element(name = "Lyric", required=false) @param:Element(name = "Lyric", required=false) public val Lyric: String?)
@@ -40,10 +41,10 @@ interface API {
     fun getLyrics(@Query("artist") artistName: String, @Query("song") songName: String): Deferred<ResponseLyrics>
 
     @retrofit2.http.GET("trending.php?country=us&type=itunes&format=singles")
-    fun getTrendingsSingles(): Deferred<ResponseTrending>
+    fun getTrendingsSingles(): Deferred<ResponseSongTrending>
 
     @retrofit2.http.GET("trending.php?country=us&type=itunes&format=albums")
-    fun getTrendingsAlbums(): Deferred<ResponseAlbum>
+    fun getTrendingsAlbums(): Deferred<ResponseAlbumTrending>
 }
 
 object NetworkManager {
@@ -73,11 +74,11 @@ object NetworkManager {
         return getRetrofitFromUrlXML("http://api.chartlyrics.com/apiv1.asmx/").getLyrics(artistName.replace(" ", "%20"), songName.replace(" ", "%20"))
     }
 
-    suspend fun getTrendingsSingles() : Deferred<ResponseTrending>{
+    suspend fun getTrendingsSingles() : Deferred<ResponseSongTrending>{
         return getRetrofitFromUrl("https://theaudiodb.com/api/v1/json/523532/").getTrendingsSingles()
     }
 
-    suspend fun getTrendingsAlbums() : Deferred<ResponseAlbum>{
+    suspend fun getTrendingsAlbums() : Deferred<ResponseAlbumTrending>{
         return getRetrofitFromUrl("https://theaudiodb.com/api/v1/json/523532/").getTrendingsAlbums()
     }
 

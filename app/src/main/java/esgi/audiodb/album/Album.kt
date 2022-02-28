@@ -13,7 +13,8 @@ constructor(
     val intScore: String,
     val intScoreVotes: String,
     val strDescriptionEN: String,
-    val strDescriptionFR: String
+    val strDescriptionFR: String,
+    val strArtist: String
 ): Parcelable {
 
 }

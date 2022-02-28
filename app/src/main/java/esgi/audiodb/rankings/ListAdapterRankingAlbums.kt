@@ -1,6 +1,7 @@
 package esgi.audiodb.rankings
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import esgi.audiodb.OnListItemClickListener
@@ -8,8 +9,7 @@ import esgi.audiodb.R
 import esgi.audiodb.album.Album
 
 class ListAdapterRankingAlbums (
-    private val albums : List<Album>,
-    private val listener: OnListItemClickListener
+    private val albums : List<Album>
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -21,12 +21,21 @@ class ListAdapterRankingAlbums (
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as RankingAlbumListItem).bindValues(albums[position])
-
+        var position = holder.adapterPosition
         //set listener
-        holder.itemView.setOnClickListener {
-            listener.onItemClicked(position)
-        }
+        holder.itemView.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(view: View?) {
+//                if (view != null && artist != null) {
+//                    view.findNavController().navigate(
+//                        ArtistsFragmentDirections.actionArtistFragmentToSongFragment(
+//                            songs[position - (countAlbumDisplay + 2)], artist
+//                        )
+//                    )
+//                }
+            }
+        })
+
+        (holder as RankingAlbumListItem).bindValues(albums[position], position + 1)
     }
 
     override fun getItemCount(): Int {
