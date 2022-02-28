@@ -14,6 +14,7 @@ import esgi.audiodb.album.NetworkManager
 import esgi.audiodb.dao.DatabaseManager
 import esgi.audiodb.favorite.ListAdapter
 import kotlinx.android.synthetic.main.favorites.*
+import kotlinx.android.synthetic.main.search.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -40,21 +41,19 @@ class SearchFragment : Fragment() {
         var artists: List<Artist> = listOf()
         var albums: List<Album> = listOf()
 
-        val databaseManager = context?.let { DatabaseManager(it) }
-
         GlobalScope.launch(Dispatchers.Default) {
-            val favoriteAlbums = databaseManager?.listenToAlbumsChanges()
-            val favoriteArtists = databaseManager?.listenToArtistsChanges()
+            val artistsFound = NetworkManager.getArtistInfo("eminem").await();
+            val albumsFound = NetworkManager.getAlbums("eminem").await();
 
-            val trendingAlbums = NetworkManager.getTrendingsAlbums().await();
-            albums = trendingAlbums.albums
+            artists = artistsFound.artists
+            albums = albumsFound.albums
 
             withContext(Dispatchers.Main) {
-                favorite_list.adapter = ListAdapter(artists, albums, context);
+                search_list.adapter = ListAdapter(artists, albums, context);
             }
         }
 
-        favorite_list.run {
+        search_list.run {
             layoutManager = LinearLayoutManager(context)
             adapter = ListAdapter(artists, albums, context);
         }
