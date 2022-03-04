@@ -69,7 +69,8 @@ class ListAdapter(
 //                }
                 }
             })
-            holder.bindValues(artists[position])
+
+            holder.bindValues(artists[position - 1])
         } else {
             var artist: Artist = Artist("111304", "eminem", "", "", "")
             //set listener
@@ -82,12 +83,12 @@ class ListAdapter(
 //                }
                 }
             })
-            (holder as AlbumListItem).bindValues(albums[position])
+            (holder as AlbumListItem).bindValues(albums[position -(countArtistDisplay  + 2)])
         }
     }
 
     override fun getItemCount(): Int {
-        return countArtistDisplay + albums.size
+        return countArtistDisplay + albums.size + 2
     }
 
     override fun getItemViewType(position: Int): Int {
