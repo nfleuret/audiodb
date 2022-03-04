@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.remy_activity_main)
         supportActionBar?.hide()
 
-        val databaseManager = DatabaseManager(this@MainActivity)
+        /*val databaseManager = DatabaseManager(this@MainActivity)
 
         GlobalScope.launch {
             databaseManager.addAlbum(
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         GlobalScope.launch {
             println(databaseManager.listenToAlbumsChanges())
 
-        }
+        }*/
     }
 }
 

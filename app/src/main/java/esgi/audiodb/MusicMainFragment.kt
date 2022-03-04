@@ -30,5 +30,23 @@ class MusicMainFragment : Fragment() {
         val navHost =
             childFragmentManager.findFragmentById(R.id.music_main_nav_host) as NavHostFragment
         NavigationUI.setupWithNavController(bottom_nav_view, navHost.navController)
+        navHost.navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.artist_fragment -> hideBottomNav()
+                R.id.album_fragment -> hideBottomNav()
+                R.id.song_fragment -> hideBottomNav()
+                else -> showBottomNav()
+            }
+        }
+    }
+
+    private fun showBottomNav() {
+        bottom_nav_view.visibility = View.VISIBLE
+
+    }
+
+    private fun hideBottomNav() {
+        bottom_nav_view.visibility = View.GONE
+
     }
 }
