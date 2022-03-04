@@ -28,6 +28,7 @@ class ListAdapterRankingSongs(
         holder.itemView.setOnClickListener(object: View.OnClickListener {
             override fun onClick(view: View?) {
                 if (view != null && songs != null) {
+                    artist = Artist("", songs[position].strArtist,"","", "")
                     view.findNavController().navigate(
                         RankingFragmentDirections.actionRankingFragmentToArtistFragment(artist)
                     )

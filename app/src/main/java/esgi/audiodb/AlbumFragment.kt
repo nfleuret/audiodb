@@ -81,7 +81,7 @@ class AlbumFragment: Fragment() {
                 Picasso.get().load(album.strAlbumThumb).into(image_album);
                 Picasso.get().load(album.strAlbumThumb).into(image_album_min);
                 album_mark.text = album.intScore;
-                album_number_vote.text = album.intScoreVotes + " votes";
+                album_number_vote.text = if(album.intScoreVotes !== null) album.intScoreVotes + " votes" else "0 votes";
                 album_description.text = album.strDescriptionEN;
                 ic_fav_off.setOnClickListener {
                     GlobalScope.launch(Dispatchers.Default) {

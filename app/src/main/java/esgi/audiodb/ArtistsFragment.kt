@@ -48,9 +48,8 @@ class ArtistsFragment: Fragment() {
         setHasOptionsMenu(false)
         var albums: List<Album> = listOf()
         var songs: List<Song> = listOf()
-        var artist: Artist? = null;
+        var artist: Artist = ArtistsFragmentArgs.fromBundle(requireArguments()).artist;
         val databaseManager = context?.let { DatabaseManager(it) }
-        Log.w("on est dans on view created", "encore un");
         GlobalScope.launch {
             databaseManager?.listenToArtistByName("Eminem")
                 ?.collect {
@@ -70,27 +69,31 @@ class ArtistsFragment: Fragment() {
         }
 
         GlobalScope.launch(Dispatchers.Default) {
-            val artists = NetworkManager.getArtistInfo("eminem").await();
-            val mostPopularTitles = NetworkManager.getMostPopularTracks("eminem").await();
-            val albumsFromApi = NetworkManager.getAlbums("eminem").await();
+            if(artist.idArtist === "") {
+                artist = NetworkManager.getArtistInfo(artist.strArtist).await().artists[0];
+            }
+            //val artists = NetworkManager.getArtistInfo("eminem").await();
+            val mostPopularTitles = NetworkManager.getMostPopularTracks(artist.strArtist).await();
+            val albumsFromApi = NetworkManager.getAlbums(artist.strArtist).await();
 
 
             withContext(Dispatchers.Main) {
-                name_artist.text = artists.artists[0].strArtist;
-                artist_localization.text = artists.artists[0].strCountry;
-                Picasso.get().load(artists.artists[0].strArtistThumb).into(image_artist);
-                artist = artists.artists[0];
+                name_artist.text = artist.strArtist;
+                artist_localization.text = artist.strCountry;
+                Picasso.get().load(artist.strArtistThumb).into(image_artist);
                 albums = albumsFromApi.albums;
                 songs = mostPopularTitles.tracks;
                 ic_fav_off.setOnClickListener {
                     GlobalScope.launch(Dispatchers.Default) {
-                        databaseManager?.addArtist(esgi.audiodb.dao.Artist(artists.artists[0].strArtist, artists.artists[0].strArtistThumb))
+                        if(artist !== null) {
+                            databaseManager?.addArtist(esgi.audiodb.dao.Artist(artist!!.strArtist, artist!!.strArtistThumb))
+                        }
                     }
                 }
 
                 ic_grey.setOnClickListener {
                     GlobalScope.launch(Dispatchers.Default) {
-                        databaseManager?.deleteArtist(esgi.audiodb.dao.Artist(artists.artists[0].strArtist, artists.artists[0].strArtistThumb))
+                        databaseManager?.deleteArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb))
                     }
                 }
 
@@ -103,10 +106,10 @@ class ArtistsFragment: Fragment() {
 
 
 
-
+        val firstArtistPassed = if (artist.idArtist === "") null else artist
         album_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)
-            adapter = ListAdapterArtist(artist, songs, albums);
+            adapter = ListAdapterArtist(firstArtistPassed, songs, albums);
             addItemDecoration(
                 DividerItemDecoration(
                     requireContext(),
