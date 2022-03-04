@@ -51,7 +51,7 @@ class ArtistsFragment: Fragment() {
         var artist: Artist = ArtistsFragmentArgs.fromBundle(requireArguments()).artist;
         val databaseManager = context?.let { DatabaseManager(it) }
         GlobalScope.launch {
-            databaseManager?.listenToArtistByName("Eminem")
+            databaseManager?.listenToArtistByName(artist.strArtist)
                 ?.collect {
                     println(it)
 
@@ -85,9 +85,7 @@ class ArtistsFragment: Fragment() {
                 songs = mostPopularTitles.tracks;
                 ic_fav_off.setOnClickListener {
                     GlobalScope.launch(Dispatchers.Default) {
-                        if(artist !== null) {
-                            databaseManager?.addArtist(esgi.audiodb.dao.Artist(artist!!.strArtist, artist!!.strArtistThumb))
-                        }
+                        databaseManager?.addArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb))
                     }
                 }
 

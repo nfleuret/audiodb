@@ -44,34 +44,21 @@ class FavoriteFragment : Fragment() {
         val databaseManager = context?.let { DatabaseManager(it) }
 
         GlobalScope.launch(Dispatchers.Default) {
-            databaseManager?.listenToAlbumsChanges()?.collect {
-                withContext(Dispatchers.Main) {
-                    var albumsApp = it.map { element ->  Album("10", element.name, 2012,element.image,"10", "12", "", "" , element.artistName) }
-                    albums = albumsApp;
-                    favorite_list.adapter = ListAdapter(artists, albums, context);
-                }
-            }
             databaseManager?.listenToArtistsChanges()?.collect {
                 withContext(Dispatchers.Main) {
                     var artistsApp = it.map { element ->  Artist("10", element.name, "", element.image, "") }
                     artists = artistsApp;
                     favorite_list.adapter = ListAdapter(artists, albums, context);
                 }
-            }
-            /*databaseManager?.listenToArtistByName("Eminem")
-                ?.collect {
-                    println(it)
-
+                databaseManager?.listenToAlbumsChanges()?.collect {
                     withContext(Dispatchers.Main) {
-                        if(it.size === 0) {
-                            ic_fav_off.visibility = View.VISIBLE;
-                            ic_fav.visibility = View.INVISIBLE;
-                        }else {
-                            ic_fav_off.visibility = View.INVISIBLE;
-                            ic_fav.visibility = View.VISIBLE;
-                        }
+                        var albumsApp = it.map { element ->  Album("10", element.name, 2012,element.image,"10", "12", "", "" , element.artistName) }
+                        albums = albumsApp;
+                        favorite_list.adapter = ListAdapter(artists, albums, context);
                     }
-                }*/
+                }
+            }
+
 
             val trendingAlbums = NetworkManager.getTrendingsAlbums().await();
             albums = trendingAlbums.albums
