@@ -29,7 +29,7 @@ class ListAdapterRankingSongs(
             override fun onClick(view: View?) {
                 if (view != null && songs != null) {
                     view.findNavController().navigate(
-                        RankingFragmentDirections.actionRankingFragment2ToArtistFragment(artist)
+                        RankingFragmentDirections.actionRankingFragmentToArtistFragment(artist)
                     )
                 }
             }

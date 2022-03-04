@@ -13,8 +13,8 @@ import esgi.audiodb.common.ArtistListItem
 import kotlinx.android.synthetic.main.song_title.view.*
 
 class ListAdapter(
-    private val artists: List<Artist>,
-    private val albums: List<Album>,
+    private var artists: List<Artist>,
+    private var albums: List<Album>,
     private val context: Context?
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -26,7 +26,7 @@ class ListAdapter(
         const val ALBUM = 3
     }
 
-    private val countArtistDisplay = if (artists.size > 3) 3 else artists.size
+    private var countArtistDisplay = if (artists.size > 3) 3 else artists.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -69,7 +69,8 @@ class ListAdapter(
 //                }
                 }
             })
-            holder.bindValues(artists[position])
+
+            holder.bindValues(artists[position - 1])
         } else {
             var artist: Artist = Artist("111304", "eminem", "", "", "")
             //set listener
@@ -82,12 +83,12 @@ class ListAdapter(
 //                }
                 }
             })
-            (holder as AlbumListItem).bindValues(albums[position])
+            (holder as AlbumListItem).bindValues(albums[position -(countArtistDisplay  + 2)])
         }
     }
 
     override fun getItemCount(): Int {
-        return countArtistDisplay + albums.size
+        return countArtistDisplay + albums.size + 2
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -97,6 +98,17 @@ class ListAdapter(
             countArtistDisplay + 1 -> ALBUM_TITLE
             else -> ALBUM
         }
+    }
+
+    fun setAlbums(albums: List<Album>) {
+        this.albums = albums;
+        notifyItemRangeChanged(this.countArtistDisplay + 1, this.albums.size + 2);
+    }
+
+    fun setArtists(artists: List<Artist>) {
+        this.artists = artists;
+        this.countArtistDisplay = if (artists.size > 3) 3 else artists.size
+        notifyItemRangeChanged(1, countArtistDisplay);
     }
 }
 

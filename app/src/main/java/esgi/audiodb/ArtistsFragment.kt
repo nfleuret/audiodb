@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
@@ -18,6 +20,7 @@ import esgi.audiodb.album.NetworkManager
 import esgi.audiodb.dao.DatabaseManager
 import esgi.audiodb.song.Song
 import kotlinx.android.synthetic.main.artist.*
+import kotlinx.android.synthetic.main.music_main.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 
@@ -39,12 +42,15 @@ class ArtistsFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
+
+        /*val navView: BottomNavigationView = bottom_nav_view
+        navView.visibility = View.GONE*/
+        setHasOptionsMenu(false)
         var albums: List<Album> = listOf()
         var songs: List<Song> = listOf()
         var artist: Artist? = null;
         val databaseManager = context?.let { DatabaseManager(it) }
-
+        Log.w("on est dans on view created", "encore un");
         GlobalScope.launch {
             databaseManager?.listenToArtistByName("Eminem")
                 ?.collect {
