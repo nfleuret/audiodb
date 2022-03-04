@@ -3,50 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/default_nav"
     app:startDestination="@id/musicMainFragment">
-    <fragment
-        android:id="@+id/artist_fragment"
-        android:name="esgi.audiodb.ArtistsFragment"
-        android:label="artist_fragment" >
-        <action
-            android:id="@+id/action_artist_fragment_to_album_fragment"
-            app:destination="@id/album_fragment"
-            app:popUpTo="@id/artist_fragment" />
-        <action
-            android:id="@+id/action_artist_fragment_to_song_fragment"
-            app:destination="@id/song_fragment"
-            app:popUpTo="@id/artist_fragment" />
-        <argument
-            android:name="artist"
-            app:argType="esgi.audiodb.album.Artist" />
-    </fragment>
 
-    <fragment
-        android:id="@+id/album_fragment"
-        android:name="esgi.audiodb.AlbumFragment"
-        android:label="album_fragment" >
-        <argument
-            android:name="album"
-            app:argType="esgi.audiodb.album.Album" />
-        <argument
-            android:name="artist"
-            app:argType="esgi.audiodb.album.Artist" />
-        <action
-            android:id="@+id/action_album_fragment_to_song_fragment"
-            app:destination="@id/song_fragment"
-            app:popUpTo="@id/album_fragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/song_fragment"
-        android:name="esgi.audiodb.SongFragment"
-        android:label="song_fragment" >
-        <argument
-            android:name="song"
-            app:argType="esgi.audiodb.song.Song" />
-        <argument
-            android:name="artist"
-            app:argType="esgi.audiodb.album.Artist" />
-    </fragment>
 
     <fragment
         android:id="@+id/musicMainFragment"
@@ -54,18 +11,6 @@
         android:label="MusicMainFragment" >
     </fragment>
 
-    <fragment
-        android:id="@+id/ranking_fragment"
-        android:name="esgi.audiodb.rankings.RankingFragment"
-        android:label="ranking_fragment" >
-        <action
-            android:id="@+id/action_ranking_fragment_to_artist_fragment"
-            app:destination="@id/artist_fragment"
-            app:popUpTo="@id/ranking_fragment" />
-        <action
-            android:id="@+id/action_ranking_fragment_to_album_fragment"
-            app:destination="@id/album_fragment"
-            app:popUpTo="@id/ranking_fragment" />
-    </fragment>
+
 
 </navigation>
