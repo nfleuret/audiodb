@@ -36,7 +36,7 @@ class ListAdapter(
             )
             ARTIST -> ArtistListItem(
                 LayoutInflater.from(parent.context)
-                    .inflate(R.layout.album_banner, parent, false)
+                    .inflate(R.layout.artist_banner, parent, false)
             )
             ALBUM_TITLE -> AlbumTitleViewHolder(
                 LayoutInflater.from(parent.context)
