@@ -44,7 +44,7 @@ class ArtistsFragment: Fragment() {
         var songs: List<Song> = listOf()
         var artist: Artist? = null;
         val databaseManager = context?.let { DatabaseManager(it) }
-
+        Log.w("on est dans on view created", "encore un");
         GlobalScope.launch {
             databaseManager?.listenToArtistByName("Eminem")
                 ?.collect {

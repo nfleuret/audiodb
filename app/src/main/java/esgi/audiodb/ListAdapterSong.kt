@@ -30,7 +30,7 @@ class ListAdapterSong(val songs: List<Song>, val artist: Artist) : RecyclerView.
 
         holder.itemView.setOnClickListener(object: View.OnClickListener {
             override fun onClick(p0: View?) {
-                if (p0 != null && artist != null) {
+                if (p0 != null && artist != null && artist.idArtist !== "") {
                     p0.findNavController().navigate(
                         AlbumFragmentDirections.actionAlbumFragmentToSongFragment(
                             songs[position], artist
@@ -46,7 +46,7 @@ class ListAdapterSong(val songs: List<Song>, val artist: Artist) : RecyclerView.
                 songs[position].strTrack
             )
 
-        holder.itemView.findViewById<TextView>(R.id.song_number)
+        holder.itemView.findViewById<TextView>(R.id.title_number)
             .setTextBold(
                 String.format("%d", position + 1)
             )

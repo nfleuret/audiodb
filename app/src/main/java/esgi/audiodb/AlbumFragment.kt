@@ -43,11 +43,13 @@ class AlbumFragment: Fragment() {
 
         var songs: List<Song> = listOf();
         val album = AlbumFragmentArgs.fromBundle(requireArguments()).album
-        val artist = AlbumFragmentArgs.fromBundle(requireArguments()).artist
+        var artist = AlbumFragmentArgs.fromBundle(requireArguments()).artist
+
         val databaseManager = context?.let { DatabaseManager(it) }
 
 
         GlobalScope.launch {
+
             databaseManager?.listenToAlbumByName(album.strAlbum)
                 ?.collect {
                     println(it)
@@ -66,9 +68,10 @@ class AlbumFragment: Fragment() {
 
 
         GlobalScope.launch(Dispatchers.Default) {
-
+            if(artist.idArtist === "") {
+                artist = NetworkManager.getArtistInfo(artist.strArtist).await().artists[0];
+            }
             val songsRequest = NetworkManager.getTracksByAlbum(album.idAlbum.toInt()).await();
-
 
 
             withContext(Dispatchers.Main) {
@@ -100,6 +103,7 @@ class AlbumFragment: Fragment() {
 
         title_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)
+
             adapter = ListAdapterSong(songs, artist);
             addItemDecoration(
                 DividerItemDecoration(
