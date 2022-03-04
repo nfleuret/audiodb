@@ -15,6 +15,7 @@ import esgi.audiodb.song.Song
 import kotlinx.android.synthetic.main.album.*
 import kotlinx.android.synthetic.main.album.ic_fav
 import kotlinx.android.synthetic.main.album.ic_fav_off
+import kotlinx.android.synthetic.main.album.previous_arrow
 import kotlinx.android.synthetic.main.album.ic_grey
 import kotlinx.android.synthetic.main.artist.*
 import kotlinx.coroutines.Dispatchers
@@ -77,12 +78,15 @@ class AlbumFragment: Fragment() {
             withContext(Dispatchers.Main) {
                 songs = songsRequest.tracks;
                 album_title.text = album.strAlbum
+                artist_name.text = artist.strArtist
                 album_number_song.text = songs.size.toString() + " chansons";
                 Picasso.get().load(album.strAlbumThumb).into(image_album);
                 Picasso.get().load(album.strAlbumThumb).into(image_album_min);
                 album_mark.text = album.intScore;
                 album_number_vote.text = if(album.intScoreVotes !== null) album.intScoreVotes + " votes" else "0 votes";
                 album_description.text = album.strDescriptionEN;
+
+
                 ic_fav_off.setOnClickListener {
                     GlobalScope.launch(Dispatchers.Default) {
                         databaseManager?.addAlbum(esgi.audiodb.dao.Album(album.strAlbum, album.strAlbumThumb, artist.strArtist))
@@ -98,6 +102,10 @@ class AlbumFragment: Fragment() {
 
                 title_list.adapter = ListAdapterSong(songs, artist);
             }
+        }
+
+        previous_arrow.setOnClickListener {
+            requireActivity().onBackPressed()
         }
 
 

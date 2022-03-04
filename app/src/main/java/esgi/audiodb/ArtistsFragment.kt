@@ -19,7 +19,12 @@ import esgi.audiodb.album.Artist
 import esgi.audiodb.album.NetworkManager
 import esgi.audiodb.dao.DatabaseManager
 import esgi.audiodb.song.Song
+import kotlinx.android.synthetic.main.album.*
 import kotlinx.android.synthetic.main.artist.*
+import kotlinx.android.synthetic.main.artist.ic_fav
+import kotlinx.android.synthetic.main.artist.ic_fav_off
+import kotlinx.android.synthetic.main.artist.ic_grey
+import kotlinx.android.synthetic.main.artist.previous_arrow
 import kotlinx.android.synthetic.main.music_main.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
@@ -99,9 +104,9 @@ class ArtistsFragment: Fragment() {
             }
         }
 
-
-
-
+        previous_arrow.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
 
 
         val firstArtistPassed = if (artist.idArtist === "") null else artist

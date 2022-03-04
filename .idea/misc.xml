@@ -18,9 +18,8 @@
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/album.xml" value="0.22" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/album_banner.xml" value="0.5" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/artist.xml" value="0.25" />
-        <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/artist_banner.xml" value="0.3778801843317972" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/artist_description.xml" value="0.13949275362318841" />
-        <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/favorites.xml" value="0.22" />
+        <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/favorites.xml" value="0.1" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/fragment_blank.xml" value="0.1" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/fragment_list.xml" value="0.25" />
         <entry key="..\:/Documents/ESGI/AL4/Android/Projet/app/src/main/res/layout/fragment_product_details.xml" value="0.17831813576494426" />
@@ -48,15 +47,19 @@
         <entry key="app/src/main/res/layout/album.xml" value="0.5046767661049996" />
         <entry key="app/src/main/res/layout/album_banner.xml" value="0.5549511933433398" />
         <entry key="app/src/main/res/layout/artist.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/music_main.xml" value="0.18645833333333334" />
+        <entry key="app/src/main/res/layout/rankings.xml" value="0.1" />
         <entry key="app/src/main/res/layout/remy_activity_main.xml" value="0.15208333333333332" />
+        <entry key="app/src/main/res/layout/song.xml" value="0.2128623188405797" />
         <entry key="app/src/main/res/layout/title_banner.xml" value="0.8904370927472046" />
+        <entry key="app/src/main/res/menu/bottom_tabs.xml" value="0.178125" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_right_arrow.xml" value="0.16822916666666668" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

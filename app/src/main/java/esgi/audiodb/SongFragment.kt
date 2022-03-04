@@ -20,6 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.android.synthetic.main.song.previous_arrow
 
 class SongFragment: Fragment() {
     override fun onCreateView(
@@ -87,6 +88,10 @@ class SongFragment: Fragment() {
                 album_title.text = song.strTrack;
                 lyrics_recycler.adapter = ListAdapterLyric(LyricsPast);
             }
+        }
+
+        previous_arrow.setOnClickListener {
+            requireActivity().onBackPressed()
         }
 
         lyrics_recycler.run {
