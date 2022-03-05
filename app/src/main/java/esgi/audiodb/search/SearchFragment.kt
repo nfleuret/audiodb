@@ -5,13 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import esgi.audiodb.R
 import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
 import esgi.audiodb.album.NetworkManager
-import esgi.audiodb.dao.DatabaseManager
 import esgi.audiodb.favorite.ListAdapter
 import kotlinx.android.synthetic.main.favorites.*
 import kotlinx.android.synthetic.main.search.*
@@ -19,6 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 class SearchFragment : Fragment() {
 
@@ -40,16 +42,23 @@ class SearchFragment : Fragment() {
         setHasOptionsMenu(true)
         var artists: List<Artist> = listOf()
         var albums: List<Album> = listOf()
+        var typedArtist : String = String()
 
-        GlobalScope.launch(Dispatchers.Default) {
-            val artistsFound = NetworkManager.getArtistInfo("eminem").await();
-            val albumsFound = NetworkManager.getAlbums("eminem").await();
+        val button = view.findViewById<ImageButton>(R.id.search_button)
+        button.setOnClickListener {
+            val input: EditText = view.findViewById<EditText>(R.id.input_text)
+            typedArtist = input.text.toString()
 
-            artists = artistsFound.artists
-            albums = albumsFound.albums
+            GlobalScope.launch(Dispatchers.Default) {
+                val artistsFound = NetworkManager.getArtistInfo(typedArtist).await();
+                val albumsFound = NetworkManager.getAlbums(typedArtist).await();
 
-            withContext(Dispatchers.Main) {
-                search_list.adapter = ListAdapter(artists, albums, context);
+                artists = artistsFound.artists
+                albums = albumsFound.albums
+
+                withContext(Dispatchers.Main) {
+                    search_list.adapter = ListAdapter(artists, albums, context);
+                }
             }
         }
 
