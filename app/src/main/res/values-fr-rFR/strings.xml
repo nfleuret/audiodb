@@ -7,10 +7,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fav_subtitle">Mes artistes et albums</string>
     <string name="artists">Artistes</string>
-    <string name="search_input">recherchez des artistes ou albums</string>
     <string name="songs">Chansons</string>
     <string name="votes">votes</string>
     <string name="appreciate_title">Titres les plus appréciés</string>
     <string name="lyrics">Paroles</string>
     <string name="no_song_desc">Nous sommes désolé nous ne possédons pas cette chanson dans notre base de donnée, si vous voulez un exemple vous pouvez prendre River de Eminem</string>
+    <string name="search_input">recherchez des artistes</string>
 </resources>
