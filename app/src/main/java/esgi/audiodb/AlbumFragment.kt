@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.collect
 import esgi.audiodb.album.NetworkManager
 import esgi.audiodb.dao.DatabaseManager
 import esgi.audiodb.song.Song
+import esgi.audiodb.utils.DescriptionLocale
 import kotlinx.android.synthetic.main.album.*
 import kotlinx.android.synthetic.main.album.ic_fav
 import kotlinx.android.synthetic.main.album.ic_fav_off
@@ -81,12 +82,15 @@ class AlbumFragment: Fragment() {
                 songs = songsRequest.tracks;
                 album_title.text = album.strAlbum
                 artist_name.text = artist.strArtist
-                album_number_song.text = if(songs === null) "0 chansons" else songs.size.toString() + " chansons";
+                val songsTrad = getString(R.string.songs)
+                val votesTrad = getString(R.string.votes)
+                album_number_song.text = if(songs === null) "0 $songsTrad" else songs.size.toString() + " $songsTrad";
                 Picasso.get().load(album.strAlbumThumb).into(image_album);
                 Picasso.get().load(album.strAlbumThumb).into(image_album_min);
                 album_mark.text = album.intScore;
-                album_number_vote.text = if(album.intScoreVotes !== null) album.intScoreVotes + " votes" else "0 votes";
-                album_description.text = album.strDescriptionEN;
+                album_number_vote.text = if(album.intScoreVotes !== null) album.intScoreVotes + " $votesTrad" else "0 $votesTrad";
+                album_description.text =  DescriptionLocale.getDescriptionOfAlbum(album);
+                artist_title.text = getString(R.string.titles)
 
 
                 ic_fav_off.setOnClickListener {

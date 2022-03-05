@@ -5,8 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import esgi.audiodb.ArtistsFragmentDirections
-import esgi.audiodb.OnListItemClickListener
 import esgi.audiodb.R
 import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
@@ -29,7 +27,7 @@ class ListAdapterRankingAlbums (
         holder.itemView.setOnClickListener(object: View.OnClickListener {
             override fun onClick(view: View?) {
                 if (view != null && albums != null) {
-                    val newArtist = Artist("", albums[position].strArtist, "", "", "")
+                    val newArtist = Artist("", albums[position].strArtist, "", "", "", "")
                     view.findNavController().navigate(
                         RankingFragmentDirections.actionRankingFragmentToAlbumFragment(
                             albums[position], newArtist

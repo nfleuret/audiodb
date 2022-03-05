@@ -1,31 +1,24 @@
 package esgi.audiodb
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
 import esgi.audiodb.album.NetworkManager
 import esgi.audiodb.dao.DatabaseManager
 import esgi.audiodb.song.Song
-import kotlinx.android.synthetic.main.album.*
 import kotlinx.android.synthetic.main.artist.*
 import kotlinx.android.synthetic.main.artist.ic_fav
 import kotlinx.android.synthetic.main.artist.ic_fav_off
 import kotlinx.android.synthetic.main.artist.ic_grey
 import kotlinx.android.synthetic.main.artist.previous_arrow
-import kotlinx.android.synthetic.main.music_main.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 
@@ -90,17 +83,17 @@ class ArtistsFragment: Fragment() {
                 songs = mostPopularTitles.tracks;
                 ic_fav_off.setOnClickListener {
                     GlobalScope.launch(Dispatchers.Default) {
-                        databaseManager?.addArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb, artist.strBiographyEN, artist.strCountry, artist.idArtist))
+                        databaseManager?.addArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb, artist.strBiographyEN, artist.strBiographyFR, artist.strCountry, artist.idArtist))
                     }
                 }
 
                 ic_grey.setOnClickListener {
                     GlobalScope.launch(Dispatchers.Default) {
-                        databaseManager?.deleteArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb, artist.strBiographyEN, artist.strCountry, artist.idArtist))
+                        databaseManager?.deleteArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb, artist.strBiographyEN, artist.strBiographyFR, artist.strCountry, artist.idArtist))
                     }
                 }
 
-                album_list.adapter = ListAdapterArtist(artist, songs, albums);
+                album_list.adapter = ListAdapterArtist(artist, songs, albums, context);
             }
         }
 
@@ -112,7 +105,7 @@ class ArtistsFragment: Fragment() {
         val firstArtistPassed = if (artist.idArtist === "") null else artist
         album_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)
-            adapter = ListAdapterArtist(firstArtistPassed, songs, albums);
+            adapter = ListAdapterArtist(firstArtistPassed, songs, albums, context);
             addItemDecoration(
                 DividerItemDecoration(
                     requireContext(),

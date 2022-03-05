@@ -9,6 +9,7 @@ class Artist constructor(
     val strArtist: String,
     val strCountry: String,
     val strArtistThumb: String,
-    val strBiographyEN: String
+    val strBiographyEN: String,
+    val strBiographyFR: String?
 ): Parcelable {
 }

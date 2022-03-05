@@ -77,7 +77,6 @@ class SongFragment: Fragment() {
                 }
 
             }catch (e: RuntimeException) {
-                println("on passe là")
             }
 
 
@@ -86,7 +85,8 @@ class SongFragment: Fragment() {
                 Picasso.get().load(album!!.albums[0].strAlbumThumb).into(image_album_min);
                 Picasso.get().load(album!!.albums[0].strAlbumThumb).into(image_album);
                 album_title.text = song.strTrack;
-                lyrics_recycler.adapter = ListAdapterLyric(LyricsPast);
+                lyrics_title.text = getString(R.string.lyrics)
+                lyrics_recycler.adapter = ListAdapterLyric(LyricsPast, context);
             }
         }
 
@@ -96,7 +96,7 @@ class SongFragment: Fragment() {
 
         lyrics_recycler.run {
             layoutManager = GridLayoutManager(requireContext(), 1)
-            adapter = ListAdapterLyric(null);
+            adapter = ListAdapterLyric(null, context);
             addItemDecoration(
                 DividerItemDecoration(
                     requireContext(),

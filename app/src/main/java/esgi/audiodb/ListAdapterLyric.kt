@@ -1,5 +1,7 @@
 package esgi.audiodb
 
+import android.content.Context
+import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import esgi.audiodb.song.Song
 
-class ListAdapterLyric(val lyric: List<String>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ListAdapterLyric(val lyric: List<String>?, val context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -26,9 +28,10 @@ class ListAdapterLyric(val lyric: List<String>?) : RecyclerView.Adapter<Recycler
         var position = holder.adapterPosition
 
         if(lyric === null || lyric.size === 0) {
+            val descriptionNoSong = if(context?.resources !== null) context.resources.getString(R.string.no_song_desc) else ""
             holder.itemView.findViewById<TextView>(R.id.song_lyrics)
                 .setTextBold(
-                    "Nous sommes désolé nous ne possédons pas cette chanson dans notre base de donnée, \nsi vous voulez un exemple vous pouvez prendre River de Eminem"
+                    descriptionNoSong
                 )
         }else {
             holder.itemView.findViewById<TextView>(R.id.song_lyrics)

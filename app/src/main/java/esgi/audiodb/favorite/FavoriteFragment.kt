@@ -1,7 +1,6 @@
 package esgi.audiodb.favorite
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
 import esgi.audiodb.album.NetworkManager
 import esgi.audiodb.dao.DatabaseManager
-import kotlinx.android.synthetic.main.artist.*
 import kotlinx.android.synthetic.main.favorites.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -46,15 +44,15 @@ class FavoriteFragment : Fragment() {
         GlobalScope.launch(Dispatchers.Default) {
             databaseManager?.listenToArtistsChanges()?.collect {
                 withContext(Dispatchers.Main) {
-                    var artistsApp = it.map { artist ->  Artist( artist.artistId, artist.name, artist.country, artist.image, artist.descriptionEn) }
+                    var artistsApp = it.map { artist ->  Artist( artist.artistId, artist.name, artist.country, artist.image, artist.descriptionEn, artist.descriptionFr) }
                     artists = artistsApp;
-                    favorite_list.adapter = ListAdapter(artists, albums, context);
+                    favorite_list.adapter = ListAdapter(artists, albums, context, "favorites");
                 }
                 databaseManager?.listenToAlbumsChanges()?.collect {
                     withContext(Dispatchers.Main) {
                         var albumsApp = it.map { album ->  Album(album.idAlbum , album.name, album.yearReleased,album.image,album.scoresVote, album.votesNumber, album.descriptionEn, album.descriptionFr, album.artistName) }
                         albums = albumsApp;
-                        favorite_list.adapter = ListAdapter(artists, albums, context);
+                        favorite_list.adapter = ListAdapter(artists, albums, context, "favorites");
                     }
                 }
             }
@@ -64,13 +62,13 @@ class FavoriteFragment : Fragment() {
             albums = trendingAlbums.albums
 
             withContext(Dispatchers.Main) {
-                favorite_list.adapter = ListAdapter(artists, albums, context);
+                favorite_list.adapter = ListAdapter(artists, albums, context, "favorites");
             }
         }
 
         favorite_list.run {
             layoutManager = LinearLayoutManager(context)
-            adapter = ListAdapter(artists, albums, context);
+            adapter = ListAdapter(artists, albums, context, "favorites");
         }
     }
 }

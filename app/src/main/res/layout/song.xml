@@ -82,7 +82,7 @@
         />
 
     <TextView
-        android:id="@+id/artist_name"
+        android:id="@+id/lyrics_title"
         app:layout_constraintTop_toTopOf="@+id/guideline_10"
         app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
         app:layout_constraintRight_toLeftOf="@+id/guideline_v_95"
@@ -93,7 +93,6 @@
         android:textSize="20sp"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:text="Paroles"
         />
 
     <androidx.cardview.widget.CardView
@@ -133,7 +132,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:textColor="@color/white"
-        android:text="Walk on water feat. Beyoncé"
+        android:text="Song title"
         />
 
     <androidx.recyclerview.widget.RecyclerView

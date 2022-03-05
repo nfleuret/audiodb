@@ -21,7 +21,16 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="esgi.audiodb.search.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_artist_fragment"
+            app:destination="@id/artist_fragment"
+            app:popUpTo="@id/searchFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_album_fragment"
+            app:destination="@id/album_fragment"
+            app:popUpTo="@id/searchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="esgi.audiodb.favorite.FavoriteFragment"

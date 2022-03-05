@@ -1,7 +1,6 @@
 package esgi.audiodb.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
 import esgi.audiodb.album.NetworkManager
 import esgi.audiodb.favorite.ListAdapter
-import kotlinx.android.synthetic.main.favorites.*
 import kotlinx.android.synthetic.main.search.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -58,15 +56,15 @@ class SearchFragment : Fragment() {
 
                 if (artists != null && albums != null) {
                     withContext(Dispatchers.Main) {
-                        search_list.adapter = ListAdapter(artists, albums, context);
+                        search_list.adapter = ListAdapter(artists, albums, context, "search");
                     }
                 }
             }
-        }
 
-        search_list.run {
-            layoutManager = LinearLayoutManager(context)
-            adapter = ListAdapter(artists, albums, context);
+            search_list.run {
+                layoutManager = LinearLayoutManager(context)
+                adapter = ListAdapter(artists, albums, context, "search");
+            }
         }
     }
 }
