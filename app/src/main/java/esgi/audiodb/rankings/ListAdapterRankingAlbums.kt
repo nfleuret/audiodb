@@ -29,7 +29,7 @@ class ListAdapterRankingAlbums (
         holder.itemView.setOnClickListener(object: View.OnClickListener {
             override fun onClick(view: View?) {
                 if (view != null && albums != null) {
-                    val newArtist = Artist("", albums[position].strArtist, "", "", "")
+                    val newArtist = Artist("", albums[position].strArtist, "", "", "", "")
                     view.findNavController().navigate(
                         RankingFragmentDirections.actionRankingFragmentToAlbumFragment(
                             albums[position], newArtist

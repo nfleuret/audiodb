@@ -1,6 +1,8 @@
 package esgi.audiodb
 
+import android.content.ClipData
 import android.content.Context
+import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,10 +16,13 @@ import com.squareup.picasso.Picasso
 import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
 import esgi.audiodb.song.Song
+import esgi.audiodb.utils.DescriptionLocale
 import kotlinx.android.synthetic.main.artist.*
+import kotlinx.android.synthetic.main.song_title.view.*
 import kotlinx.coroutines.NonDisposableHandle.parent
+import java.util.*
 
-class ListAdapterArtist(val artist: Artist?, val songs: List<Song>, val albums: List<Album>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ListAdapterArtist(val artist: Artist?, val songs: List<Song>, val albums: List<Album>, val context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         const val ITEM_DESCRIPTION = 0
@@ -77,7 +82,7 @@ class ListAdapterArtist(val artist: Artist?, val songs: List<Song>, val albums: 
 
             cell.itemView.findViewById<TextView>(R.id.title_number)
                 .setTextBold(
-                    String.format("%d", position - (countAlbumDisplay + 2))
+                    String.format("%d", position - (countAlbumDisplay + 1))
                 )
 
         } else if (cell is CellViewHolder) {
@@ -108,16 +113,20 @@ class ListAdapterArtist(val artist: Artist?, val songs: List<Song>, val albums: 
         }else if (cell is DescriptionViewHolder) {
 
             if (artist != null) {
+                val description  = DescriptionLocale.getDescriptionOfArtist(artist);
                 cell.itemView.findViewById<TextView>(R.id.artist_description)
                     .setTextBold(
-                        artist.strBiographyEN
+                        description
                     )
             }
-
+            val album = context?.resources?.getString(R.string.Albums)
             cell.itemView.findViewById<TextView>(R.id.artist_album_title)
                 .setTextBold(
-                    "Albums(" + albums.size + ")"
+                    "$album (" + albums.size + ")"
                 )
+        }else if (cell is TitleSongViewHolder){
+
+            cell.itemView.artist_song_most_appreciate.text = context?.resources?.getString(R.string.appreciate_title)
         }
 
 

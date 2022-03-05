@@ -10,4 +10,9 @@
     <string name="fav_subtitle">My artists and albums</string>
     <string name="artists">Artists</string>
     <string name="search_input">search for artists of albums</string>
+    <string name="songs">Songs</string>
+    <string name="votes">votes</string>
+    <string name="appreciate_title">Most popular titles</string>
+    <string name="lyrics">Lyrics</string>
+    <string name="no_song_desc">We are sorry we don\'t have this song in our database, if you want an example you can use River by Eminem</string>
 </resources>

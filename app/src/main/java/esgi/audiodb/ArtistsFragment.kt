@@ -90,17 +90,17 @@ class ArtistsFragment: Fragment() {
                 songs = mostPopularTitles.tracks;
                 ic_fav_off.setOnClickListener {
                     GlobalScope.launch(Dispatchers.Default) {
-                        databaseManager?.addArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb, artist.strBiographyEN, artist.strCountry, artist.idArtist))
+                        databaseManager?.addArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb, artist.strBiographyEN, artist.strBiographyFR, artist.strCountry, artist.idArtist))
                     }
                 }
 
                 ic_grey.setOnClickListener {
                     GlobalScope.launch(Dispatchers.Default) {
-                        databaseManager?.deleteArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb, artist.strBiographyEN, artist.strCountry, artist.idArtist))
+                        databaseManager?.deleteArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb, artist.strBiographyEN, artist.strBiographyFR, artist.strCountry, artist.idArtist))
                     }
                 }
 
-                album_list.adapter = ListAdapterArtist(artist, songs, albums);
+                album_list.adapter = ListAdapterArtist(artist, songs, albums, context);
             }
         }
 
@@ -112,7 +112,7 @@ class ArtistsFragment: Fragment() {
         val firstArtistPassed = if (artist.idArtist === "") null else artist
         album_list.run {
             layoutManager = GridLayoutManager(requireContext(), 1)
-            adapter = ListAdapterArtist(firstArtistPassed, songs, albums);
+            adapter = ListAdapterArtist(firstArtistPassed, songs, albums, context);
             addItemDecoration(
                 DividerItemDecoration(
                     requireContext(),

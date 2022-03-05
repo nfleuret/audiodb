@@ -10,8 +10,8 @@ constructor(
     val strAlbum: String,
     val intYearReleased: Int,
     val strAlbumThumb: String,
-    val intScore: String,
-    val intScoreVotes: String,
+    val intScore: String?,
+    val intScoreVotes: String?,
     val strDescriptionEN: String,
     val strDescriptionFR: String?,
     val strArtist: String

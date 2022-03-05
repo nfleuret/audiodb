@@ -49,13 +49,13 @@ class SearchFragment : Fragment() {
             albums = albumsFound.albums
 
             withContext(Dispatchers.Main) {
-                search_list.adapter = ListAdapter(artists, albums, context);
+                search_list.adapter = ListAdapter(artists, albums, context, "search");
             }
         }
 
         search_list.run {
             layoutManager = LinearLayoutManager(context)
-            adapter = ListAdapter(artists, albums, context);
+            adapter = ListAdapter(artists, albums, context, "search");
         }
     }
 }

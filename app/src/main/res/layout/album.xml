@@ -150,7 +150,6 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="15dp"
         android:textColor="@color/grey"
-        android:text="7 chansons"
         />
 
 
@@ -392,7 +391,7 @@
 
 
     <TextView
-        android:id="@+id/artist_song_most_appreciate"
+        android:id="@+id/artist_title"
         app:layout_constraintTop_toBottomOf="@+id/album_description"
         app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
         android:layout_width="0dp"
@@ -402,12 +401,11 @@
         android:textSize="25sp"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
-        android:text="Titres"
         />
 
     <View
         android:id="@+id/artist_separator_2"
-        app:layout_constraintTop_toBottomOf="@+id/artist_song_most_appreciate"
+        app:layout_constraintTop_toBottomOf="@+id/artist_title"
         app:layout_constraintLeft_toRightOf="@+id/guideline_v_8"
         android:layout_marginTop="10dp"
         android:layout_width="0dp"

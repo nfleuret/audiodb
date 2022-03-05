@@ -23,12 +23,12 @@ class ListAdapterRankingSongs(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         var position = holder.adapterPosition
-        var artist : Artist = Artist("111304", "eminem","","", "")
+        var artist : Artist = Artist("111304", "eminem","","", "", "")
         //set listener
         holder.itemView.setOnClickListener(object: View.OnClickListener {
             override fun onClick(view: View?) {
                 if (view != null && songs != null) {
-                    artist = Artist("", songs[position].strArtist,"","", "")
+                    artist = Artist("", songs[position].strArtist,"","", "", "")
                     view.findNavController().navigate(
                         RankingFragmentDirections.actionRankingFragmentToArtistFragment(artist)
                     )

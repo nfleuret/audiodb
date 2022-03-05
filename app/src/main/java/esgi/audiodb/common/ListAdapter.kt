@@ -12,12 +12,14 @@ import esgi.audiodb.album.Artist
 import esgi.audiodb.common.AlbumListItem
 import esgi.audiodb.common.ArtistListItem
 import esgi.audiodb.rankings.RankingFragmentDirections
+import esgi.audiodb.search.SearchFragmentDirections
 import kotlinx.android.synthetic.main.song_title.view.*
 
 class ListAdapter(
     private var artists: List<Artist>,
     private var albums: List<Album>,
-    private val context: Context?
+    private val context: Context?,
+    private val fragmentParent: String
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -65,28 +67,35 @@ class ListAdapter(
             holder.itemView.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(view: View?) {
                     if (view !== null && artists[position - 1] != null) {
-                        view.findNavController().navigate(
-                            FavoriteFragmentDirections.actionFavoriteFragmentToArtistFragment(
-                                artists[position - 1]
+                        if(fragmentParent === "search") {
+                            view.findNavController().navigate(
+                                SearchFragmentDirections.actionSearchFragmentToArtistFragment(artists[position - 1])
                             )
-                        )
+                        }else if (fragmentParent === "favorites") {
+                            view.findNavController().navigate(
+                                FavoriteFragmentDirections.actionFavoriteFragmentToArtistFragment(artists[position - 1])
+                            )
+                        }
                     }
                 }
             })
 
             holder.bindValues(artists[position - 1])
         } else {
-            var artist: Artist = Artist("111304", "eminem", "", "", "")
             //set listener
             holder.itemView.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(view: View?) {
                     if (view !== null && albums[position -(countArtistDisplay  + 2)] !== null) {
-                        val newArtist = Artist("", albums[position -(countArtistDisplay  + 2)].strArtist, "", "", "")
-                        view.findNavController().navigate(
-                            FavoriteFragmentDirections.actionFavoriteFragmentToAlbumFragment(
-                                albums[position -(countArtistDisplay  + 2)], newArtist
+                        val newArtist = Artist("", albums[position -(countArtistDisplay  + 2)].strArtist, "", "", "", "")
+                        if(fragmentParent === "search") {
+                            view.findNavController().navigate(
+                                SearchFragmentDirections.actionSearchFragmentToAlbumFragment(albums[position -(countArtistDisplay  + 2)], newArtist)
                             )
-                        )
+                        }else if (fragmentParent === "favorites") {
+                            view.findNavController().navigate(
+                                FavoriteFragmentDirections.actionFavoriteFragmentToAlbumFragment(albums[position -(countArtistDisplay  + 2)], newArtist)
+                            )
+                        }
                     }
                 }
             })
