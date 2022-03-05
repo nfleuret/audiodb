@@ -42,11 +42,11 @@ class SearchFragment : Fragment() {
         setHasOptionsMenu(true)
         var artists: List<Artist> = listOf()
         var albums: List<Album> = listOf()
-        var typedArtist : String = String()
+        var typedArtist: String = String()
 
         val button = view.findViewById<ImageButton>(R.id.search_button)
         button.setOnClickListener {
-            val input: EditText = view.findViewById<EditText>(R.id.input_text)
+            val input = view.findViewById<EditText>(R.id.input_text)
             typedArtist = input.text.toString()
 
             GlobalScope.launch(Dispatchers.Default) {
@@ -56,8 +56,10 @@ class SearchFragment : Fragment() {
                 artists = artistsFound.artists
                 albums = albumsFound.albums
 
-                withContext(Dispatchers.Main) {
-                    search_list.adapter = ListAdapter(artists, albums, context);
+                if (artists != null && albums != null) {
+                    withContext(Dispatchers.Main) {
+                        search_list.adapter = ListAdapter(artists, albums, context);
+                    }
                 }
             }
         }

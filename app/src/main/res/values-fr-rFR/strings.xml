@@ -7,5 +7,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fav_subtitle">Mes artistes et albums</string>
     <string name="artists">Artistes</string>
-    <string name="search_input">recherchez des artistes ou albums</string>
+    <string name="search_input">recherchez des artistes</string>
 </resources>
