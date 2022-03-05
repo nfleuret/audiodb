@@ -4,12 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import esgi.audiodb.R
 import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
 import esgi.audiodb.common.AlbumListItem
 import esgi.audiodb.common.ArtistListItem
+import esgi.audiodb.rankings.RankingFragmentDirections
 import kotlinx.android.synthetic.main.song_title.view.*
 
 class ListAdapter(
@@ -62,11 +64,13 @@ class ListAdapter(
             //set listener
             holder.itemView.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(view: View?) {
-//                if (view != null && songs != null) {
-//                    view.findNavController().navigate(
-//                        RankingFragmentDirections.actionRankingFragment2ToArtistFragment(artist)
-//                    )
-//                }
+                    if (view !== null && artists[position - 1] != null) {
+                        view.findNavController().navigate(
+                            FavoriteFragmentDirections.actionFavoriteFragmentToArtistFragment(
+                                artists[position - 1]
+                            )
+                        )
+                    }
                 }
             })
 
@@ -76,11 +80,14 @@ class ListAdapter(
             //set listener
             holder.itemView.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(view: View?) {
-//                if (view != null && songs != null) {
-//                    view.findNavController().navigate(
-//                        RankingFragmentDirections.actionRankingFragment2ToArtistFragment(artist)
-//                    )
-//                }
+                    if (view !== null && albums[position -(countArtistDisplay  + 2)] !== null) {
+                        val newArtist = Artist("", albums[position -(countArtistDisplay  + 2)].strArtist, "", "", "")
+                        view.findNavController().navigate(
+                            FavoriteFragmentDirections.actionFavoriteFragmentToAlbumFragment(
+                                albums[position -(countArtistDisplay  + 2)], newArtist
+                            )
+                        )
+                    }
                 }
             })
             (holder as AlbumListItem).bindValues(albums[position -(countArtistDisplay  + 2)])

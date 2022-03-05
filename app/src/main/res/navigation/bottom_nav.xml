@@ -25,7 +25,16 @@
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="esgi.audiodb.favorite.FavoriteFragment"
-        android:label="FavoriteFragment" />
+        android:label="FavoriteFragment" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_album_fragment"
+            app:destination="@id/album_fragment"
+            app:popUpTo="@id/favoriteFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_artist_fragment"
+            app:destination="@id/artist_fragment"
+            app:popUpTo="@id/favoriteFragment" />
+    </fragment>
 
 
     <fragment

@@ -46,13 +46,13 @@ class FavoriteFragment : Fragment() {
         GlobalScope.launch(Dispatchers.Default) {
             databaseManager?.listenToArtistsChanges()?.collect {
                 withContext(Dispatchers.Main) {
-                    var artistsApp = it.map { element ->  Artist("10", element.name, "", element.image, "") }
+                    var artistsApp = it.map { artist ->  Artist( artist.artistId, artist.name, artist.country, artist.image, artist.descriptionEn) }
                     artists = artistsApp;
                     favorite_list.adapter = ListAdapter(artists, albums, context);
                 }
                 databaseManager?.listenToAlbumsChanges()?.collect {
                     withContext(Dispatchers.Main) {
-                        var albumsApp = it.map { element ->  Album("10", element.name, 2012,element.image,"10", "12", "", "" , element.artistName) }
+                        var albumsApp = it.map { album ->  Album(album.idAlbum , album.name, album.yearReleased,album.image,album.scoresVote, album.votesNumber, album.descriptionEn, album.descriptionFr, album.artistName) }
                         albums = albumsApp;
                         favorite_list.adapter = ListAdapter(artists, albums, context);
                     }

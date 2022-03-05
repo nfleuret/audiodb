@@ -4,12 +4,11 @@ import android.content.Context
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
+@Entity
+data class Artist(@PrimaryKey @ColumnInfo(name = "id") val name: String, val image: String, val descriptionEn: String, val country: String, val artistId: String)
 
 @Entity
-data class Artist(@PrimaryKey @ColumnInfo(name = "id") val name: String, val image: String)
-
-@Entity
-data class Album(@PrimaryKey @ColumnInfo(name = "id") val name: String, val image: String, val artistName: String)
+data class Album(@PrimaryKey @ColumnInfo(name = "id") val name: String, val image: String, val idAlbum: String, val yearReleased: Int,val scoresVote: String, val votesNumber: String,  val descriptionEn: String, val descriptionFr: String?, val artistName: String)
 
 @Dao
 interface DbDao {
@@ -48,7 +47,7 @@ class DatabaseManager(context: Context) {
 
     private val db = Room.databaseBuilder(
         context,
-        AppDatabase::class.java, "audiodb.sqlite",
+        AppDatabase::class.java, "audiodb3.sqlite",
     ).build()
 
 

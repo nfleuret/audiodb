@@ -90,13 +90,13 @@ class ArtistsFragment: Fragment() {
                 songs = mostPopularTitles.tracks;
                 ic_fav_off.setOnClickListener {
                     GlobalScope.launch(Dispatchers.Default) {
-                        databaseManager?.addArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb))
+                        databaseManager?.addArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb, artist.strBiographyEN, artist.strCountry, artist.idArtist))
                     }
                 }
 
                 ic_grey.setOnClickListener {
                     GlobalScope.launch(Dispatchers.Default) {
-                        databaseManager?.deleteArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb))
+                        databaseManager?.deleteArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb, artist.strBiographyEN, artist.strCountry, artist.idArtist))
                     }
                 }
 
