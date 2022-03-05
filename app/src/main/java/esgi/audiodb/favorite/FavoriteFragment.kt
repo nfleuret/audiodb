@@ -1,7 +1,6 @@
 package esgi.audiodb.favorite
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
 import esgi.audiodb.album.NetworkManager
 import esgi.audiodb.dao.DatabaseManager
-import kotlinx.android.synthetic.main.artist.*
 import kotlinx.android.synthetic.main.favorites.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

@@ -1,7 +1,5 @@
 package esgi.audiodb.utils
 
-import android.widget.ImageView
-import com.squareup.picasso.Picasso
 import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
 import java.util.*

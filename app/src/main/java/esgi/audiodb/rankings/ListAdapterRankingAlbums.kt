@@ -5,8 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import esgi.audiodb.ArtistsFragmentDirections
-import esgi.audiodb.OnListItemClickListener
 import esgi.audiodb.R
 import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist

@@ -69,7 +69,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/eminem"
         />
 
     <ImageView
@@ -94,7 +93,6 @@
         android:textSize="20sp"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:text=""
         />
 
     <androidx.cardview.widget.CardView
@@ -115,7 +113,6 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/eminem"
             android:scaleType="centerCrop"
             />
 
@@ -134,7 +131,6 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:textColor="@color/white"
-        android:text="Revival"
         />
 
     <TextView
@@ -347,7 +343,6 @@
                     android:layout_weight="60"
                     android:textSize="14sp"
                     android:textColor="@color/black"
-                    android:text="4.9"
                     />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -366,7 +361,6 @@
                 android:layout_weight="60"
                 android:textSize="14sp"
                 android:textColor="@color/black"
-                android:text="348 votes"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

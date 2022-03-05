@@ -11,7 +11,6 @@ import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
 import esgi.audiodb.common.AlbumListItem
 import esgi.audiodb.common.ArtistListItem
-import esgi.audiodb.rankings.RankingFragmentDirections
 import esgi.audiodb.search.SearchFragmentDirections
 import kotlinx.android.synthetic.main.song_title.view.*
 

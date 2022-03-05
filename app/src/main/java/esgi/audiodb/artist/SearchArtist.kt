@@ -1,6 +1,6 @@
 package esgi.audiodb.artist
 
-data class Artist(
+data class SearchArtist(
     val idArtist : Int,
     val strArtist : String,
 )

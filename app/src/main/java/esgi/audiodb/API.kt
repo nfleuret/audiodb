@@ -1,6 +1,5 @@
 package esgi.audiodb
 
-import esgi.audiodb.artist.Artist
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query

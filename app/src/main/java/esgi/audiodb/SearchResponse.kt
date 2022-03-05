@@ -1,7 +1,7 @@
 package esgi.audiodb
 
-import esgi.audiodb.artist.Artist
+import esgi.audiodb.artist.SearchArtist
 
 data class SearchResponse(
-    val artists: List<Artist>,
+    val artists: List<SearchArtist>,
 )

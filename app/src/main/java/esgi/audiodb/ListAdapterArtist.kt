@@ -1,26 +1,19 @@
 package esgi.audiodb
 
-import android.content.ClipData
 import android.content.Context
-import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import esgi.audiodb.album.Album
 import esgi.audiodb.album.Artist
 import esgi.audiodb.song.Song
 import esgi.audiodb.utils.DescriptionLocale
-import kotlinx.android.synthetic.main.artist.*
 import kotlinx.android.synthetic.main.song_title.view.*
-import kotlinx.coroutines.NonDisposableHandle.parent
-import java.util.*
 
 class ListAdapterArtist(val artist: Artist?, val songs: List<Song>, val albums: List<Album>, val context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

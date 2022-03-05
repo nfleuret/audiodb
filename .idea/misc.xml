@@ -48,7 +48,9 @@
         <entry key="app/src/main/res/layout/album.xml" value="0.5046767661049996" />
         <entry key="app/src/main/res/layout/album_banner.xml" value="0.5549511933433398" />
         <entry key="app/src/main/res/layout/artist.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/lyrics.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/layout/remy_activity_main.xml" value="0.15208333333333332" />
+        <entry key="app/src/main/res/layout/song.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/layout/title_banner.xml" value="0.8904370927472046" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.16822916666666668" />
