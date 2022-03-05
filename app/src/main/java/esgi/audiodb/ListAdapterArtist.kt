@@ -77,7 +77,7 @@ class ListAdapterArtist(val artist: Artist?, val songs: List<Song>, val albums: 
 
             cell.itemView.findViewById<TextView>(R.id.title_number)
                 .setTextBold(
-                    String.format("%d", position - (countAlbumDisplay + 2))
+                    String.format("%d", position - (countAlbumDisplay + 1))
                 )
 
         } else if (cell is CellViewHolder) {
