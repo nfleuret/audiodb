@@ -75,6 +75,7 @@ class ArtistsFragment: Fragment() {
             val albumsFromApi = NetworkManager.getAlbums(artist.strArtist).await();
 
 
+
             withContext(Dispatchers.Main) {
                 name_artist.text = artist.strArtist;
                 artist_localization.text = artist.strCountry;
@@ -83,6 +84,9 @@ class ArtistsFragment: Fragment() {
                 songs = mostPopularTitles.tracks;
                 if(songs === null){
                     songs = listOf()
+                }
+                if(albums === null){
+                    albums = listOf()
                 }
                 ic_fav_off.setOnClickListener {
                     GlobalScope.launch(Dispatchers.Default) {
