@@ -5,6 +5,8 @@ Cette application mobile utilise les données de l'API TheAudioDB pour présente
 - albums
 - titres
 
+Nous nous servons également de l'API chartlyrics qui permet de récupérer les paroles des chanson via une API SOAP
+
 ## Fonctionnalités implémentées
 ### Page d'accueil (Classements)
 Cette page présente les classements itunes pour les titres et les albums, répartis sur deux onglets.
@@ -13,8 +15,6 @@ Il est possible de naviguer vers la page Artiste ou la page Album par clic sur u
 
 Une barre de navigation permet d'accéder à la page Recherche ou Favoris.
 
-![image classement Chansons](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e3756ab6-e2a7-4a36-9842-2265b6995188/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220306%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220306T080658Z&X-Amz-Expires=86400&X-Amz-Signature=a74183de970cb9ef12784b78867e3fb5eb7ca56972b763edfa4fb36065326e90&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
-![image classement Albums](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/0b67e3ec-5a31-4b0b-acbe-274b28985c37/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220306%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220306T081231Z&X-Amz-Expires=86400&X-Amz-Signature=47276bc523414793f2ee7a4485c6a6c5ca9b073b4ed517539688142538c44b46&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
 Navigation :
 ```mermaid
     flowchart LR
@@ -28,8 +28,6 @@ Navigation :
         B --> Favoris
 ```
 ### Page Recherche
-
-![image recherche](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/7262c648-5026-45b6-8adb-d4a898cae6d0/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220306%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220306T081403Z&X-Amz-Expires=86400&X-Amz-Signature=bab4e43741a1d3757316cb78a1db4de9d042bb6f2e56feac5f41f1c94dfbf951&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
 
 Cette page permet de réaliser une recherche par artiste. 
 - Saisir un nom d'artiste dans le champ de recherche et appuyer sur le bouton associé.
@@ -103,7 +101,7 @@ Par clic sur un titre, on accède à la page Titre.
 ```
 
 ### Page Titre
-Cette page affiche les paroles d'une chanson.
+Cette page affiche les paroles d'une chanson quand celle-ci est disponible, sinon elle affiche un texte qui précise à l'utilisateur qu'elle ne l'est pas.
 
 ### Précisions
 - l'application tient compte de la langue du téléphone graçe aux Strings et à la getLocal pour les descriptions Album et Artist.
