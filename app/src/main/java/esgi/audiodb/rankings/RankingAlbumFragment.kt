@@ -34,20 +34,11 @@ class RankingAlbumFragment : Fragment(){
         )
     }
 
-    val api = Retrofit.Builder()
-        .baseUrl("https://www.theaudiodb.com/api/v1/json/2/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .build()
-        .create(API::class.java)
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
         var albums: List<Album> = listOf()
-
-        val databaseManager = context?.let { DatabaseManager(it) }
 
         //2nd thread
         GlobalScope.launch(Dispatchers.Default) {

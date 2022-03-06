@@ -51,16 +51,15 @@ class SearchFragment : Fragment() {
                 val artistsFound = NetworkManager.getArtistInfo(typedArtist).await();
                 val albumsFound = NetworkManager.getAlbums(typedArtist).await();
 
-                artists = artistsFound.artists
-                albums = albumsFound.albums
+                if (artistsFound.artists != null && albumsFound.albums != null) {
+                    artists = artistsFound.artists
+                    albums = albumsFound.albums
 
-                if (artists != null && albums != null) {
                     withContext(Dispatchers.Main) {
                         search_list.adapter = ListAdapter(artists, albums, context, "search");
                     }
                 }
             }
-
             search_list.run {
                 layoutManager = LinearLayoutManager(context)
                 adapter = ListAdapter(artists, albums, context, "search");
