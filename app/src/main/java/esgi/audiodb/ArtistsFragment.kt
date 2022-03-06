@@ -81,6 +81,9 @@ class ArtistsFragment: Fragment() {
                 Picasso.get().load(artist.strArtistThumb).into(image_artist);
                 albums = albumsFromApi.albums;
                 songs = mostPopularTitles.tracks;
+                if(songs === null){
+                    songs = listOf()
+                }
                 ic_fav_off.setOnClickListener {
                     GlobalScope.launch(Dispatchers.Default) {
                         databaseManager?.addArtist(esgi.audiodb.dao.Artist(artist.strArtist, artist.strArtistThumb, artist.strBiographyEN, artist.strBiographyFR, artist.strCountry, artist.idArtist))
